@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Tg_account {
+  id        Int       @id @default(autoincrement())
+  phone     String
+  username  String
+  firstname String
+  lastname  String?
+  proxy     Proxy?    @relation(fields: [proxyId], references: [id])
+  proxyId   Int?      @unique
+  comments  Comment[]
+  session   String?
+}
+
+model Comment {
+  id        Int         @id @default(autoincrement())
+  account   Tg_account? @relation(fields: [accountId], references: [id])
+  accountId Int?
+  message   String
+}
+
+model Proxy {
+  id         Int         @id @default(autoincrement())
+  type       String
+  host       String
+  port       Int
+  isIPv6     Boolean
+  login      String?
+  password   String?
+  TG_account Tg_account?
+}
