@@ -3,5 +3,5 @@ import {IAccount} from "../../interfaces/components";
 
 export const getAllAccounts = async (): Promise<IAccount[]> => {
   const { data } = await axios.get<IAccount[]>('/account')
-  if(data instanceof ) return data
+  return data
 }

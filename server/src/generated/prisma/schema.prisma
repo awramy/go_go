@@ -35,11 +35,18 @@ model Comment {
 
 model Proxy {
   id         Int         @id @default(autoincrement())
-  type       String
+  type       ProxyType
   host       String
   port       Int
-  isIPv6     Boolean
+  isIPv6     Boolean     @default(false)
   login      String?
   password   String?
-  TG_account Tg_account?
+  Tg_account Tg_account?
+}
+
+enum ProxyType {
+  socks5
+  http
+  https
+  socks
 }

@@ -30,6 +30,25 @@ export type Comment = $Result.DefaultSelection<Prisma.$CommentPayload>
 export type Proxy = $Result.DefaultSelection<Prisma.$ProxyPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const ProxyType: {
+  socks5: 'socks5',
+  http: 'http',
+  https: 'https',
+  socks: 'socks'
+};
+
+export type ProxyType = (typeof ProxyType)[keyof typeof ProxyType]
+
+}
+
+export type ProxyType = $Enums.ProxyType
+
+export const ProxyType: typeof $Enums.ProxyType
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -3365,7 +3384,7 @@ export namespace Prisma {
 
   export type ProxyMinAggregateOutputType = {
     id: number | null
-    type: string | null
+    type: $Enums.ProxyType | null
     host: string | null
     port: number | null
     isIPv6: boolean | null
@@ -3375,7 +3394,7 @@ export namespace Prisma {
 
   export type ProxyMaxAggregateOutputType = {
     id: number | null
-    type: string | null
+    type: $Enums.ProxyType | null
     host: string | null
     port: number | null
     isIPv6: boolean | null
@@ -3524,7 +3543,7 @@ export namespace Prisma {
 
   export type ProxyGroupByOutputType = {
     id: number
-    type: string
+    type: $Enums.ProxyType
     host: string
     port: number
     isIPv6: boolean
@@ -3559,7 +3578,7 @@ export namespace Prisma {
     isIPv6?: boolean
     login?: boolean
     password?: boolean
-    TG_account?: boolean | Proxy$TG_accountArgs<ExtArgs>
+    Tg_account?: boolean | Proxy$Tg_accountArgs<ExtArgs>
   }, ExtArgs["result"]["proxy"]>
 
   export type ProxySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3594,7 +3613,7 @@ export namespace Prisma {
 
   export type ProxyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "host" | "port" | "isIPv6" | "login" | "password", ExtArgs["result"]["proxy"]>
   export type ProxyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    TG_account?: boolean | Proxy$TG_accountArgs<ExtArgs>
+    Tg_account?: boolean | Proxy$Tg_accountArgs<ExtArgs>
   }
   export type ProxyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
   export type ProxyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3602,11 +3621,11 @@ export namespace Prisma {
   export type $ProxyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Proxy"
     objects: {
-      TG_account: Prisma.$Tg_accountPayload<ExtArgs> | null
+      Tg_account: Prisma.$Tg_accountPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      type: string
+      type: $Enums.ProxyType
       host: string
       port: number
       isIPv6: boolean
@@ -4006,7 +4025,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProxyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    TG_account<T extends Proxy$TG_accountArgs<ExtArgs> = {}>(args?: Subset<T, Proxy$TG_accountArgs<ExtArgs>>): Prisma__Tg_accountClient<$Result.GetResult<Prisma.$Tg_accountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Tg_account<T extends Proxy$Tg_accountArgs<ExtArgs> = {}>(args?: Subset<T, Proxy$Tg_accountArgs<ExtArgs>>): Prisma__Tg_accountClient<$Result.GetResult<Prisma.$Tg_accountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4037,7 +4056,7 @@ export namespace Prisma {
    */
   interface ProxyFieldRefs {
     readonly id: FieldRef<"Proxy", 'Int'>
-    readonly type: FieldRef<"Proxy", 'String'>
+    readonly type: FieldRef<"Proxy", 'ProxyType'>
     readonly host: FieldRef<"Proxy", 'String'>
     readonly port: FieldRef<"Proxy", 'Int'>
     readonly isIPv6: FieldRef<"Proxy", 'Boolean'>
@@ -4431,9 +4450,9 @@ export namespace Prisma {
   }
 
   /**
-   * Proxy.TG_account
+   * Proxy.Tg_account
    */
-  export type Proxy$TG_accountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Proxy$Tg_accountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Tg_account
      */
@@ -4571,6 +4590,20 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProxyType'
+   */
+  export type EnumProxyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProxyType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProxyType[]'
+   */
+  export type ListEnumProxyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProxyType[]'>
     
 
 
@@ -4720,13 +4753,13 @@ export namespace Prisma {
     OR?: ProxyWhereInput[]
     NOT?: ProxyWhereInput | ProxyWhereInput[]
     id?: IntFilter<"Proxy"> | number
-    type?: StringFilter<"Proxy"> | string
+    type?: EnumProxyTypeFilter<"Proxy"> | $Enums.ProxyType
     host?: StringFilter<"Proxy"> | string
     port?: IntFilter<"Proxy"> | number
     isIPv6?: BoolFilter<"Proxy"> | boolean
     login?: StringNullableFilter<"Proxy"> | string | null
     password?: StringNullableFilter<"Proxy"> | string | null
-    TG_account?: XOR<Tg_accountNullableScalarRelationFilter, Tg_accountWhereInput> | null
+    Tg_account?: XOR<Tg_accountNullableScalarRelationFilter, Tg_accountWhereInput> | null
   }
 
   export type ProxyOrderByWithRelationInput = {
@@ -4737,7 +4770,7 @@ export namespace Prisma {
     isIPv6?: SortOrder
     login?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
-    TG_account?: Tg_accountOrderByWithRelationInput
+    Tg_account?: Tg_accountOrderByWithRelationInput
   }
 
   export type ProxyWhereUniqueInput = Prisma.AtLeast<{
@@ -4745,13 +4778,13 @@ export namespace Prisma {
     AND?: ProxyWhereInput | ProxyWhereInput[]
     OR?: ProxyWhereInput[]
     NOT?: ProxyWhereInput | ProxyWhereInput[]
-    type?: StringFilter<"Proxy"> | string
+    type?: EnumProxyTypeFilter<"Proxy"> | $Enums.ProxyType
     host?: StringFilter<"Proxy"> | string
     port?: IntFilter<"Proxy"> | number
     isIPv6?: BoolFilter<"Proxy"> | boolean
     login?: StringNullableFilter<"Proxy"> | string | null
     password?: StringNullableFilter<"Proxy"> | string | null
-    TG_account?: XOR<Tg_accountNullableScalarRelationFilter, Tg_accountWhereInput> | null
+    Tg_account?: XOR<Tg_accountNullableScalarRelationFilter, Tg_accountWhereInput> | null
   }, "id">
 
   export type ProxyOrderByWithAggregationInput = {
@@ -4774,7 +4807,7 @@ export namespace Prisma {
     OR?: ProxyScalarWhereWithAggregatesInput[]
     NOT?: ProxyScalarWhereWithAggregatesInput | ProxyScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Proxy"> | number
-    type?: StringWithAggregatesFilter<"Proxy"> | string
+    type?: EnumProxyTypeWithAggregatesFilter<"Proxy"> | $Enums.ProxyType
     host?: StringWithAggregatesFilter<"Proxy"> | string
     port?: IntWithAggregatesFilter<"Proxy"> | number
     isIPv6?: BoolWithAggregatesFilter<"Proxy"> | boolean
@@ -4788,7 +4821,7 @@ export namespace Prisma {
     firstname: string
     lastname?: string | null
     session?: string | null
-    proxy?: ProxyCreateNestedOneWithoutTG_accountInput
+    proxy?: ProxyCreateNestedOneWithoutTg_accountInput
     comments?: CommentCreateNestedManyWithoutAccountInput
   }
 
@@ -4809,7 +4842,7 @@ export namespace Prisma {
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: NullableStringFieldUpdateOperationsInput | string | null
     session?: NullableStringFieldUpdateOperationsInput | string | null
-    proxy?: ProxyUpdateOneWithoutTG_accountNestedInput
+    proxy?: ProxyUpdateOneWithoutTg_accountNestedInput
     comments?: CommentUpdateManyWithoutAccountNestedInput
   }
 
@@ -4891,59 +4924,59 @@ export namespace Prisma {
   }
 
   export type ProxyCreateInput = {
-    type: string
+    type: $Enums.ProxyType
     host: string
     port: number
-    isIPv6: boolean
+    isIPv6?: boolean
     login?: string | null
     password?: string | null
-    TG_account?: Tg_accountCreateNestedOneWithoutProxyInput
+    Tg_account?: Tg_accountCreateNestedOneWithoutProxyInput
   }
 
   export type ProxyUncheckedCreateInput = {
     id?: number
-    type: string
+    type: $Enums.ProxyType
     host: string
     port: number
-    isIPv6: boolean
+    isIPv6?: boolean
     login?: string | null
     password?: string | null
-    TG_account?: Tg_accountUncheckedCreateNestedOneWithoutProxyInput
+    Tg_account?: Tg_accountUncheckedCreateNestedOneWithoutProxyInput
   }
 
   export type ProxyUpdateInput = {
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumProxyTypeFieldUpdateOperationsInput | $Enums.ProxyType
     host?: StringFieldUpdateOperationsInput | string
     port?: IntFieldUpdateOperationsInput | number
     isIPv6?: BoolFieldUpdateOperationsInput | boolean
     login?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    TG_account?: Tg_accountUpdateOneWithoutProxyNestedInput
+    Tg_account?: Tg_accountUpdateOneWithoutProxyNestedInput
   }
 
   export type ProxyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumProxyTypeFieldUpdateOperationsInput | $Enums.ProxyType
     host?: StringFieldUpdateOperationsInput | string
     port?: IntFieldUpdateOperationsInput | number
     isIPv6?: BoolFieldUpdateOperationsInput | boolean
     login?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
-    TG_account?: Tg_accountUncheckedUpdateOneWithoutProxyNestedInput
+    Tg_account?: Tg_accountUncheckedUpdateOneWithoutProxyNestedInput
   }
 
   export type ProxyCreateManyInput = {
     id?: number
-    type: string
+    type: $Enums.ProxyType
     host: string
     port: number
-    isIPv6: boolean
+    isIPv6?: boolean
     login?: string | null
     password?: string | null
   }
 
   export type ProxyUpdateManyMutationInput = {
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumProxyTypeFieldUpdateOperationsInput | $Enums.ProxyType
     host?: StringFieldUpdateOperationsInput | string
     port?: IntFieldUpdateOperationsInput | number
     isIPv6?: BoolFieldUpdateOperationsInput | boolean
@@ -4953,7 +4986,7 @@ export namespace Prisma {
 
   export type ProxyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumProxyTypeFieldUpdateOperationsInput | $Enums.ProxyType
     host?: StringFieldUpdateOperationsInput | string
     port?: IntFieldUpdateOperationsInput | number
     isIPv6?: BoolFieldUpdateOperationsInput | boolean
@@ -5174,6 +5207,13 @@ export namespace Prisma {
     accountId?: SortOrder
   }
 
+  export type EnumProxyTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProxyType | EnumProxyTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumProxyTypeFilter<$PrismaModel> | $Enums.ProxyType
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -5219,6 +5259,16 @@ export namespace Prisma {
     port?: SortOrder
   }
 
+  export type EnumProxyTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProxyType | EnumProxyTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumProxyTypeWithAggregatesFilter<$PrismaModel> | $Enums.ProxyType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProxyTypeFilter<$PrismaModel>
+    _max?: NestedEnumProxyTypeFilter<$PrismaModel>
+  }
+
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -5227,9 +5277,9 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type ProxyCreateNestedOneWithoutTG_accountInput = {
-    create?: XOR<ProxyCreateWithoutTG_accountInput, ProxyUncheckedCreateWithoutTG_accountInput>
-    connectOrCreate?: ProxyCreateOrConnectWithoutTG_accountInput
+  export type ProxyCreateNestedOneWithoutTg_accountInput = {
+    create?: XOR<ProxyCreateWithoutTg_accountInput, ProxyUncheckedCreateWithoutTg_accountInput>
+    connectOrCreate?: ProxyCreateOrConnectWithoutTg_accountInput
     connect?: ProxyWhereUniqueInput
   }
 
@@ -5255,14 +5305,14 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type ProxyUpdateOneWithoutTG_accountNestedInput = {
-    create?: XOR<ProxyCreateWithoutTG_accountInput, ProxyUncheckedCreateWithoutTG_accountInput>
-    connectOrCreate?: ProxyCreateOrConnectWithoutTG_accountInput
-    upsert?: ProxyUpsertWithoutTG_accountInput
+  export type ProxyUpdateOneWithoutTg_accountNestedInput = {
+    create?: XOR<ProxyCreateWithoutTg_accountInput, ProxyUncheckedCreateWithoutTg_accountInput>
+    connectOrCreate?: ProxyCreateOrConnectWithoutTg_accountInput
+    upsert?: ProxyUpsertWithoutTg_accountInput
     disconnect?: ProxyWhereInput | boolean
     delete?: ProxyWhereInput | boolean
     connect?: ProxyWhereUniqueInput
-    update?: XOR<XOR<ProxyUpdateToOneWithWhereWithoutTG_accountInput, ProxyUpdateWithoutTG_accountInput>, ProxyUncheckedUpdateWithoutTG_accountInput>
+    update?: XOR<XOR<ProxyUpdateToOneWithWhereWithoutTg_accountInput, ProxyUpdateWithoutTg_accountInput>, ProxyUncheckedUpdateWithoutTg_accountInput>
   }
 
   export type CommentUpdateManyWithoutAccountNestedInput = {
@@ -5335,6 +5385,10 @@ export namespace Prisma {
     create?: XOR<Tg_accountCreateWithoutProxyInput, Tg_accountUncheckedCreateWithoutProxyInput>
     connectOrCreate?: Tg_accountCreateOrConnectWithoutProxyInput
     connect?: Tg_accountWhereUniqueInput
+  }
+
+  export type EnumProxyTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ProxyType
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -5499,9 +5553,26 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumProxyTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProxyType | EnumProxyTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumProxyTypeFilter<$PrismaModel> | $Enums.ProxyType
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedEnumProxyTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProxyType | EnumProxyTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProxyType[] | ListEnumProxyTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumProxyTypeWithAggregatesFilter<$PrismaModel> | $Enums.ProxyType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProxyTypeFilter<$PrismaModel>
+    _max?: NestedEnumProxyTypeFilter<$PrismaModel>
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -5512,28 +5583,28 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type ProxyCreateWithoutTG_accountInput = {
-    type: string
+  export type ProxyCreateWithoutTg_accountInput = {
+    type: $Enums.ProxyType
     host: string
     port: number
-    isIPv6: boolean
+    isIPv6?: boolean
     login?: string | null
     password?: string | null
   }
 
-  export type ProxyUncheckedCreateWithoutTG_accountInput = {
+  export type ProxyUncheckedCreateWithoutTg_accountInput = {
     id?: number
-    type: string
+    type: $Enums.ProxyType
     host: string
     port: number
-    isIPv6: boolean
+    isIPv6?: boolean
     login?: string | null
     password?: string | null
   }
 
-  export type ProxyCreateOrConnectWithoutTG_accountInput = {
+  export type ProxyCreateOrConnectWithoutTg_accountInput = {
     where: ProxyWhereUniqueInput
-    create: XOR<ProxyCreateWithoutTG_accountInput, ProxyUncheckedCreateWithoutTG_accountInput>
+    create: XOR<ProxyCreateWithoutTg_accountInput, ProxyUncheckedCreateWithoutTg_accountInput>
   }
 
   export type CommentCreateWithoutAccountInput = {
@@ -5555,19 +5626,19 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProxyUpsertWithoutTG_accountInput = {
-    update: XOR<ProxyUpdateWithoutTG_accountInput, ProxyUncheckedUpdateWithoutTG_accountInput>
-    create: XOR<ProxyCreateWithoutTG_accountInput, ProxyUncheckedCreateWithoutTG_accountInput>
+  export type ProxyUpsertWithoutTg_accountInput = {
+    update: XOR<ProxyUpdateWithoutTg_accountInput, ProxyUncheckedUpdateWithoutTg_accountInput>
+    create: XOR<ProxyCreateWithoutTg_accountInput, ProxyUncheckedCreateWithoutTg_accountInput>
     where?: ProxyWhereInput
   }
 
-  export type ProxyUpdateToOneWithWhereWithoutTG_accountInput = {
+  export type ProxyUpdateToOneWithWhereWithoutTg_accountInput = {
     where?: ProxyWhereInput
-    data: XOR<ProxyUpdateWithoutTG_accountInput, ProxyUncheckedUpdateWithoutTG_accountInput>
+    data: XOR<ProxyUpdateWithoutTg_accountInput, ProxyUncheckedUpdateWithoutTg_accountInput>
   }
 
-  export type ProxyUpdateWithoutTG_accountInput = {
-    type?: StringFieldUpdateOperationsInput | string
+  export type ProxyUpdateWithoutTg_accountInput = {
+    type?: EnumProxyTypeFieldUpdateOperationsInput | $Enums.ProxyType
     host?: StringFieldUpdateOperationsInput | string
     port?: IntFieldUpdateOperationsInput | number
     isIPv6?: BoolFieldUpdateOperationsInput | boolean
@@ -5575,9 +5646,9 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ProxyUncheckedUpdateWithoutTG_accountInput = {
+  export type ProxyUncheckedUpdateWithoutTg_accountInput = {
     id?: IntFieldUpdateOperationsInput | number
-    type?: StringFieldUpdateOperationsInput | string
+    type?: EnumProxyTypeFieldUpdateOperationsInput | $Enums.ProxyType
     host?: StringFieldUpdateOperationsInput | string
     port?: IntFieldUpdateOperationsInput | number
     isIPv6?: BoolFieldUpdateOperationsInput | boolean
@@ -5616,7 +5687,7 @@ export namespace Prisma {
     firstname: string
     lastname?: string | null
     session?: string | null
-    proxy?: ProxyCreateNestedOneWithoutTG_accountInput
+    proxy?: ProxyCreateNestedOneWithoutTg_accountInput
   }
 
   export type Tg_accountUncheckedCreateWithoutCommentsInput = {
@@ -5651,7 +5722,7 @@ export namespace Prisma {
     firstname?: StringFieldUpdateOperationsInput | string
     lastname?: NullableStringFieldUpdateOperationsInput | string | null
     session?: NullableStringFieldUpdateOperationsInput | string | null
-    proxy?: ProxyUpdateOneWithoutTG_accountNestedInput
+    proxy?: ProxyUpdateOneWithoutTg_accountNestedInput
   }
 
   export type Tg_accountUncheckedUpdateWithoutCommentsInput = {

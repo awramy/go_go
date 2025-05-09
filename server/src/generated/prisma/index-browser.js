@@ -160,7 +160,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.ProxyType = exports.$Enums.ProxyType = {
+  socks5: 'socks5',
+  http: 'http',
+  https: 'https',
+  socks: 'socks'
+};
 
 exports.Prisma.ModelName = {
   Tg_account: 'Tg_account',

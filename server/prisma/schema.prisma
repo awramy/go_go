@@ -20,8 +20,8 @@ model Tg_account {
   username  String
   firstname String
   lastname  String?
-  proxy     Proxy?     @relation(fields: [proxyId], references: [id])
-  proxyId   Int? @unique
+  proxy     Proxy?    @relation(fields: [proxyId], references: [id])
+  proxyId   Int?      @unique
   comments  Comment[]
   session   String?
 }
@@ -34,12 +34,19 @@ model Comment {
 }
 
 model Proxy {
-  id         Int          @id @default(autoincrement())
-  type       String
+  id         Int         @id @default(autoincrement())
+  type       ProxyType
   host       String
   port       Int
-  isIPv6     Boolean
+  isIPv6     Boolean     @default(false)
   login      String?
   password   String?
-  TG_account Tg_account?
+  Tg_account Tg_account?
+}
+
+enum ProxyType {
+  socks5
+  http
+  https
+  socks
 }
