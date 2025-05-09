@@ -1,4 +1,4 @@
-import {useAccount} from "../../contexts/AccountContext/context";
+import {useAccount} from "../../contexts/AccountsList/context";
 import AccountItem from "./AccountItem";
 
 const AccountList = () => {
@@ -8,8 +8,8 @@ const AccountList = () => {
   return (
     <>
       {
-        accounts.map((account) => (
-          <AccountItem id={account.id} phone={account.phone} proxy={account.proxy} />
+        accounts.map((account, index) => (
+          <AccountItem key={index} id={account.id} phone={account.phone} proxy={account.proxy} />
         ))
       }
     </>

@@ -1,0 +1,23 @@
+.bg-indigo { background-color: #4b0082 !important; } /* Тёмно-фиолетовый */
+.bg-violet { background-color: #8a2be2 !important; } /* Фиолетовый */
+.bg-lavender { background-color: #e6e6fa !important; } /* Лавандовый */
+.bg-royal-blue { background-color: #4169e1 !important; } /* Королевский синий */
+.bg-midnight { background-color: #191970 !important; } /* Тёмно-синий */
+.bg-lilac { background-color: #d8bfd8 !important; } /* Лиловый */
+.bg-periwinkle { background-color: #ccccff !important; } /* Барвинковый */
+
+.text-indigo { color: #4b0082 !important; }
+.text-violet { color: #8a2be2 !important; }
+.text-lavender { color: #e6e6fa !important; }
+.text-royal-blue { color: #4169e1 !important; }
+.text-midnight { color: #191970 !important; }
+.text-void { color: #0a0a0a !important; }
+.text-obsidian { color: #1a1a1a !important; }
+.text-lilac { color: #d8bfd8 !important; }
+.text-periwinkle { color: #ccccff !important; }
+
+.border-indigo { border-color: #4b0082 !important; }
+.border-violet { border-color: #8a2be2 !important; }
+.border-lavender { border-color: #e6e6fa !important; }
+.border-royal-blue { border-color: #4169e1 !important; }
+.border-void { border-color: #0a0a0a !important; }

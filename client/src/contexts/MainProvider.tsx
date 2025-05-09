@@ -1,4 +1,4 @@
-import {AccountProvider} from "./AccountContext/provider";
+import {AccountProvider} from "./AccountsList/provider";
 import {FC, ReactNode} from "react";
 
 const MainProvider: FC<{children: ReactNode}> = ({children}) => {

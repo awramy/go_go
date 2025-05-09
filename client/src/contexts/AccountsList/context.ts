@@ -1,10 +1,9 @@
 import { createContext, useContext } from "react"
-import {AccountStore} from "./store";
-
+import {IAccountData} from "./interfaces";
 
 //создаем контекст, который будет хранить экземпляр нашего класса
 //{} - начальное значение, будет переопределено в провайдере
-export const AccountContext = createContext<AccountStore>({} as AccountStore);
+export const AccountContext = createContext<IAccountData>({} as IAccountData);
 
 //хук для доступа к контексту с проверкой, что он определен в провайдере
 export const useAccount = () => {

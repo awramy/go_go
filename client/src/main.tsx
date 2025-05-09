@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import 'bootstrap/dist/css/bootstrap.css';
 import MainProvider from "./contexts/MainProvider";
+import './styles/global.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
