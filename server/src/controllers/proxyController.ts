@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import { prisma, Prisma } from "../prisma.js";
 
 class ProxyController {
+
   //получения списка всех прокси со связанным объектом аккаунта
   async getProxy(req: Request, res: Response) {
     const result = await prisma.proxy.findMany({
@@ -18,11 +19,12 @@ class ProxyController {
   }
   //создание прокси, арг-ты передаем в body, isIPv6 и инф-ию об аккаунте можно не передавать
   async createProxy (req: Request, res: Response) {
+    console.log('createProxy')
     try {
       const proxyData: Prisma.ProxyCreateInput = req.body;
       const {type, host, port, login, password, isIPv6} = proxyData;
 
-      console.log(typeof port)
+      console.log(type)
 
       const result = await prisma.proxy.create({
         data: {

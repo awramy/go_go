@@ -1,6 +1,7 @@
-import {IAccount} from "../../interfaces/components";
+import {IAccount} from "../../types/components";
 
 export interface IAccountData {
-  accounts: IAccount[],
+  accounts: IAccount[]
   updateAccounts: (newData: IAccount[]) => void
+  updateOneAccount: (newAccount: IAccount) => void
 }

@@ -4,6 +4,7 @@
 .bg-royal-blue { background-color: #4169e1 !important; } /* Королевский синий */
 .bg-midnight { background-color: #191970 !important; } /* Тёмно-синий */
 .bg-lilac { background-color: #d8bfd8 !important; } /* Лиловый */
+.bg-peach { background-color: #ffd2ac !important; } /* Персиковый */
 .bg-periwinkle { background-color: #ccccff !important; } /* Барвинковый */
 
 .text-indigo { color: #4b0082 !important; }
@@ -16,6 +17,7 @@
 .text-lilac { color: #d8bfd8 !important; }
 .text-periwinkle { color: #ccccff !important; }
 
+.border-obsidian { border-color: #1a1a1a !important; }
 .border-indigo { border-color: #4b0082 !important; }
 .border-violet { border-color: #8a2be2 !important; }
 .border-lavender { border-color: #e6e6fa !important; }

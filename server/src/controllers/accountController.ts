@@ -41,11 +41,30 @@ class AccountController {
       } else res.status(500).json('unknown error')
     }
   }
+  //обновление данных аккаунта по id
+  updateAccount = async (req: Request, res: Response) => {
+    try {
+      console.log(req.body)
+      const { id } = req.params
+      const { phone } = req.body
+
+      console.log(phone)
+
+      const account = await prisma.tg_account.update({
+        where: {id: Number(id)},
+        data: {phone: phone}
+      })
+      res.status(200).json(account)
+    } catch (e) {
+      if (e instanceof Error) {
+        res.status(400).json(e.message)
+      } else res.status(500).json('unknown error')
+    }
+  }
   //привязка/пере-привязка прокси к аккаунту
   linkProxyToAccount = async (req: Request, res: Response) => {
     try {
       const id = req.params.id
-      console.log(id)
       const proxyId = req.body.proxyId
 
       if (!id || !proxyId) {
@@ -53,13 +72,16 @@ class AccountController {
       } else {
         //обновление прокси у аккаунта
         const result = await prisma.tg_account.update({
-          where: {id: Number(id)}, //ищем прокси по id
+          where: {id : Number(id)}, //ищем прокси по id
           data: { //данные, которые будем обновлять
             proxy: { //выбираем поле proxy у аккаунта
               connect: { //находим по proxyId запись прокси и привязываем к аккаунту
                 id: Number(proxyId)
               }
             }
+          },
+          include: {
+            proxy: true
           }
         })
         res.status(200).json(result)
@@ -69,6 +91,10 @@ class AccountController {
         res.status(400).json(e.message)
       } else res.status(500).json('unknown error')
     }
+  }
+  test = async (req: Request, res: Response) => {
+    console.log(req.body)
+    console.log(req.params)
   }
   //отвязка прокси от аккаунта
   disconnectProxy = async (req: Request, res: Response) => {

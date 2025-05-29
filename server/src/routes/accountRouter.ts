@@ -5,6 +5,9 @@ const router = Router()
 
 router.get('/', accountController.getAccounts)
 router.post('/', accountController.createAccount)
+
+router.put('/:id', accountController.updateAccount)
+
 router.put('/:id/proxy', accountController.linkProxyToAccount)
 router.delete('/:id/proxy', accountController.disconnectProxy)
 
