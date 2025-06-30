@@ -9,7 +9,13 @@ const AccountList = () => {
     <>
       {
         accounts.map((account, index) => (
-          <AccountItem key={index} id={account.id} phone={account.phone} proxy={account.proxy} />
+          <AccountItem
+            key={index}
+            id={account.id}
+            phone={account.phone}
+            session={account.session}
+            proxy={account.proxy}
+          />
         ))
       }
     </>

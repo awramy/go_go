@@ -7,15 +7,17 @@ import {useAccount} from "../../contexts/AccountsList/context";
 import AddProxyModal from "./AddProxyModal";
 import {disconnectProxy} from "../../api/modules/account.api";
 import {useProxyList} from "../../contexts/ProxyList/context";
+import AddSessionModal from "./AddSessionModal";
 
 
-const AccountItem:FC<Pick<IAccount, 'id' | 'phone' | 'proxy'>> = ({id, phone, proxy}) => {
+const AccountItem: FC<Pick<IAccount, 'id' | 'phone' | 'proxy' | 'session'>> = ({id, phone, proxy, session}) => {
 
-  const { updateAccount } = useActiveAccount()
-  const { accounts, updateOneAccount } = useAccount()
-  const { fetchProxyList } = useProxyList()
+  const {updateAccount} = useActiveAccount()
+  const {accounts, updateOneAccount} = useAccount()
+  const {fetchProxyList} = useProxyList()
   const navigate = useNavigate()
-  const [ modalVisible, setModalVisible ] = useState<boolean>(false)
+  const [proxyModalVisible, setProxyModalVisible] = useState<boolean>(false)
+  const [sessionModalVisible, setSessionModalVisible] = useState<boolean>(false)
 
   const goToSettingPage = () => {
     const newActiveAccount = accounts.find(account => account.id === id)
@@ -40,24 +42,34 @@ const AccountItem:FC<Pick<IAccount, 'id' | 'phone' | 'proxy'>> = ({id, phone, pr
       <Card className='m-2'>
         <div className=' d-flex align-items-center p-3 justify-content-between'>
           <div className='d-inline-block'>
-            <div className='d-inline-block me-2'>{phone}</div>
-            <div className={`d-inline-block rounded fw-light ${proxy?.host ? 'bg-violet text-light': 'border border-obsidian text-obsidian'} px-2 py-1`} >
-              {proxy?.host ? 'прокси: ': 'без прокси'}
-              {proxy?.host ? <span className='px-1 bg-lavender rounded-1 text-indigo'>{proxy?.host}</span>: ''}
-            </div>
+            <div className='d-inline-block me-2 min-w-120'>{phone}</div>
             {
               proxy?.host ? <button className='bg-transparent border-0' onClick={disconnectProxyToAccount}>❌</button>
-                          : <button className='bg-transparent border-0' onClick={() => setModalVisible(true)}>🔗</button>
+                : <button className='bg-transparent border-0' onClick={() => setProxyModalVisible(true)}>🔗</button>
             }
+            <div
+              className={`d-inline-block rounded fw-light ${proxy?.host ? 'bg-violet text-light' : 'border border-obsidian text-obsidian'} px-2 py-1`}>
+              {proxy?.host ? 'прокси: ' : 'без прокси'}
+              {proxy?.host ? <span className='px-1 bg-lavender rounded-1 text-indigo'>{proxy?.host}</span> : ''}
+            </div>
           </div>
 
-          <Button
+
+          <div className='float-end'>
+            {
+              session ? <div className='pt-1 me-2 d-inline-block text-secondary'>вход выполнен</div>
+                : <button onClick={() => setSessionModalVisible(true)} className='pt-1 me-1 bg-transparent border-0 text-warning'>войдите в аккаунт</button>
+            }
+            <Button
               className='float-end bg-lavender border-1 border-violet text-violet'
               onClick={goToSettingPage}
-          >Настройка</Button>
+            >Настройка</Button>
+          </div>
+
         </div>
       </Card>
-      <AddProxyModal accountId={id} isShow={modalVisible} onHide={() => setModalVisible(false)} />
+      <AddProxyModal accountId={id} isShow={proxyModalVisible} onHide={() => setProxyModalVisible(false)}/>
+      <AddSessionModal id={id} isShow={sessionModalVisible} onHide={() => setSessionModalVisible(false)}/>
     </>
   );
 };

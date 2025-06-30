@@ -29,3 +29,14 @@ export const disconnectProxy = async (accountId: number) => {
   const { data } = await $host.delete<IAccount>(`/account/${accountId}/proxy`)
   return data
 }
+
+export const updateSession = async (accountId: number, apiId: string, apiHash: string) => {
+  const { data } = await $host.post<{status: string}>(`/account/${accountId}/session`, {apiId, apiHash})
+  console.log(data)
+  return data
+}
+
+export const verifySession = async (accountId: number, code: string) => {
+  const { data } = await $host.post<IAccount>(`/account/${accountId}/session/verify`, {code})
+  return data
+}

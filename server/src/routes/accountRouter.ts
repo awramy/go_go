@@ -1,5 +1,9 @@
 import { Router } from 'express'
-import accountController from "../controllers/accountController.js";
+import {container} from "tsyringe";
+import {AccountController} from "../controllers/accountController.js";
+
+const accountController = container.resolve(AccountController);
+
 
 const router = Router()
 
@@ -10,5 +14,8 @@ router.put('/:id', accountController.updateAccount)
 
 router.put('/:id/proxy', accountController.linkProxyToAccount)
 router.delete('/:id/proxy', accountController.disconnectProxy)
+
+router.post('/:id/session', accountController.updateSession)
+router.post('/:id/session/verify', accountController.verifySession)
 
 export default router;

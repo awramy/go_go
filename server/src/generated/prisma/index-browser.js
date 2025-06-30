@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.10.1
+ * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.10.1",
+  engine: "9b628578b3b7cae625e8c927178f15a170e74a9c"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -127,7 +127,14 @@ exports.Prisma.Tg_accountScalarFieldEnum = {
   firstname: 'firstname',
   lastname: 'lastname',
   proxyId: 'proxyId',
-  session: 'session'
+  sessionId: 'sessionId'
+};
+
+exports.Prisma.SessionScalarFieldEnum = {
+  id: 'id',
+  sessionString: 'sessionString',
+  apiId: 'apiId',
+  apiHash: 'apiHash'
 };
 
 exports.Prisma.CommentScalarFieldEnum = {
@@ -144,6 +151,36 @@ exports.Prisma.ProxyScalarFieldEnum = {
   isIPv6: 'isIPv6',
   login: 'login',
   password: 'password'
+};
+
+exports.Prisma.ChatUserListScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  tg_accountId: 'tg_accountId'
+};
+
+exports.Prisma.UserDataScalarFieldEnum = {
+  id: 'id',
+  userListId: 'userListId',
+  username: 'username',
+  phone: 'phone'
+};
+
+exports.Prisma.WarmingDataScalarFieldEnum = {
+  id: 'id',
+  tg_accountId: 'tg_accountId',
+  timeLastStep: 'timeLastStep',
+  timeStop: 'timeStop',
+  stepCounter: 'stepCounter',
+  messagesCounter: 'messagesCounter',
+  answersCounter: 'answersCounter',
+  reactionsCounter: 'reactionsCounter',
+  commentsCounter: 'commentsCounter',
+  messagesPerHour: 'messagesPerHour',
+  answersPerHour: 'answersPerHour',
+  reactionsPerHour: 'reactionsPerHour',
+  commentsPerHour: 'commentsPerHour',
+  startDelay: 'startDelay'
 };
 
 exports.Prisma.SortOrder = {
@@ -169,8 +206,12 @@ exports.ProxyType = exports.$Enums.ProxyType = {
 
 exports.Prisma.ModelName = {
   Tg_account: 'Tg_account',
+  Session: 'Session',
   Comment: 'Comment',
-  Proxy: 'Proxy'
+  Proxy: 'Proxy',
+  ChatUserList: 'ChatUserList',
+  UserData: 'UserData',
+  WarmingData: 'WarmingData'
 };
 
 /**

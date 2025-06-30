@@ -6,6 +6,9 @@
 .bg-lilac { background-color: #d8bfd8 !important; } /* Лиловый */
 .bg-peach { background-color: #ffd2ac !important; } /* Персиковый */
 .bg-periwinkle { background-color: #ccccff !important; } /* Барвинковый */
+.bg-lightgray { background-color: #f3f3f3 !important; } /* Светло-серый */
+.bg-green { background-color: #50ae61 !important; } /* Мутно-зеленый */
+
 
 .text-indigo { color: #4b0082 !important; }
 .text-violet { color: #8a2be2 !important; }
@@ -16,6 +19,7 @@
 .text-obsidian { color: #1a1a1a !important; }
 .text-lilac { color: #d8bfd8 !important; }
 .text-periwinkle { color: #ccccff !important; }
+.text-gray { color: #cdcdcd !important; }
 
 .border-obsidian { border-color: #1a1a1a !important; }
 .border-indigo { border-color: #4b0082 !important; }
@@ -23,3 +27,8 @@
 .border-lavender { border-color: #e6e6fa !important; }
 .border-royal-blue { border-color: #4169e1 !important; }
 .border-void { border-color: #0a0a0a !important; }
+.border-green { border-color: #50ae61 !important; } /* Мутно-зеленый */
+
+.min-w-120 {
+    min-width: 120px;
+}

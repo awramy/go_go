@@ -16,7 +16,14 @@
     /* Type Checking */
     "strict": true, //включает полную проверку типов по всем фронтам
     /* Completeness */
-    "skipLibCheck": true //Skip type checking all .d.ts files
+    "skipLibCheck": true, //Skip type checking all .d.ts files
+
+    "experimentalDecorators": true, //разрешает использование декораторов
+    "emitDecoratorMetadata": true, //генерирует метаданные типов для декорированных классов
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
   },
   "include": ["src/**/*"], //указывает, какие файлы и папки TypeScript должен обрабатывать (src/**/* — все файлы в папке src (и подпапках))
 }

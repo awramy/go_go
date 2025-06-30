@@ -1,14 +1,17 @@
 import { Request, Response } from "express";
-import { prisma, Prisma } from "../prisma.js";
-class AccountController {
+import { Prisma } from "../prisma.js";
+import {AccountService} from "../services/settingServices/accountService.js";
+import {inject, injectable} from "tsyringe";
+
+@injectable()
+export class AccountController {
+
+  constructor(@inject(AccountService) private accountService: AccountService) {}
+
   //получения списка аккаунтов, включая связанный объект proxy
   getAccounts = async (req: Request, res: Response) => {
     try {
-      const result = await prisma.tg_account.findMany({
-        include: {
-          proxy: true // включаем связанный объект Proxy
-        }
-      })
+      const result = await this.accountService.getAll()
       res.status(200).json(result)
     } catch (e) {
       if (e instanceof Error) {
@@ -20,21 +23,8 @@ class AccountController {
   createAccount = async (req: Request, res: Response) => {
     try {
       const accountData: Prisma.Tg_accountCreateInput = req.body;
-      const { phone, username, firstname, lastname, session} = accountData
-
-      console.log(accountData)
-
-      const account = await prisma.tg_account.create({
-        data: {
-          phone,
-          username,
-          firstname,
-          lastname,
-          session
-        }
-      })
-
-      res.status(200).json(account)
+      const result = await this.accountService.create(accountData)
+      res.status(200).json(result)
     } catch (e) {
       if (e instanceof Error) {
         res.status(500).json(e.message)
@@ -44,17 +34,11 @@ class AccountController {
   //обновление данных аккаунта по id
   updateAccount = async (req: Request, res: Response) => {
     try {
-      console.log(req.body)
       const { id } = req.params
-      const { phone } = req.body
+      const data = req.body //поля должны принадлежать Tg_account(нельзя преедавать proxy, comments)
+      const result = await this.accountService.updateOne(Number(id), data)
 
-      console.log(phone)
-
-      const account = await prisma.tg_account.update({
-        where: {id: Number(id)},
-        data: {phone: phone}
-      })
-      res.status(200).json(account)
+      res.status(200).json(result)
     } catch (e) {
       if (e instanceof Error) {
         res.status(400).json(e.message)
@@ -69,21 +53,39 @@ class AccountController {
 
       if (!id || !proxyId) {
         res.status(400).json('proxy or account id not found')
+      }
+
+      const result = await this.accountService.updateProxy(Number(id), Number(proxyId))
+      res.status(200).json(result)
+
+    } catch (e) {
+      if (e instanceof Error) {
+        res.status(400).json(e.message)
+      } else res.status(500).json('unknown error')
+    }
+  }
+  //отвязка прокси от аккаунта
+  disconnectProxy = async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id
+      const result = await this.accountService.disconnectProxy(Number(id))
+      res.status(200).json(result)
+    } catch (e) {
+      if (e instanceof Error) {
+        res.status(400).json(e.message)
+      } else res.status(500).json('unknown error')
+    }
+  }
+  //контроллер на создание неподтвержденной сессии, в res - {status: success}
+  updateSession = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params
+      const {apiId, apiHash} = req.body
+      if(!apiId || !apiHash) {
+        res.status(400).json('proxy or account id not found')
       } else {
-        //обновление прокси у аккаунта
-        const result = await prisma.tg_account.update({
-          where: {id : Number(id)}, //ищем прокси по id
-          data: { //данные, которые будем обновлять
-            proxy: { //выбираем поле proxy у аккаунта
-              connect: { //находим по proxyId запись прокси и привязываем к аккаунту
-                id: Number(proxyId)
-              }
-            }
-          },
-          include: {
-            proxy: true
-          }
-        })
+        const result = await this.accountService.updateSession(Number(id), Number(apiId), String(apiHash))
+        console.log(result)
         res.status(200).json(result)
       }
     } catch (e) {
@@ -92,27 +94,21 @@ class AccountController {
       } else res.status(500).json('unknown error')
     }
   }
-  test = async (req: Request, res: Response) => {
-    console.log(req.body)
-    console.log(req.params)
-  }
-  //отвязка прокси от аккаунта
-  disconnectProxy = async (req: Request, res: Response) => {
-    const id = req.params.id
-
-    const result = await prisma.tg_account.update({
-      where: {id: Number(id)},
-      data: {
-        proxy: {
-          disconnect: true
-        }
-      },
-      include: {
-        proxy: true
+  //контроллер на подтверждение + готовая сессия, в res - IAccount
+  verifySession = async (req: Request, res: Response) => {
+    try {
+      const id = req.params.id
+      const {code} = req.body
+      if (!id || !code) {
+        res.status(400).json('code or account id not found')
+      } else {
+        const result = await this.accountService.verifySession(Number(id), String(code))
+        res.status(200).json(result)
       }
-    })
-    res.status(200).json(result)
+    } catch (e) {
+      if (e instanceof Error) {
+        res.status(400).json(e.message)
+      } else res.status(500).json('unknown error')
+    }
   }
 }
-
-export default new AccountController()
