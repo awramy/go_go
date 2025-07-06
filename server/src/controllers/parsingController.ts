@@ -27,5 +27,10 @@ export class ParsingController {
     res.end(buffer)
   }
 
-
+  async parsingTest(req: Request<{id: number}, {}, {chatId: number}>, res: Response) {
+    const {id} = req.params
+    const {chatId} = req.body
+    const result = await this.parsingService.findChatById(Number(id), Number(chatId))
+    res.status(200).json(result)
+  }
 }

@@ -48,6 +48,11 @@ export type UserData = $Result.DefaultSelection<Prisma.$UserDataPayload>
  * 
  */
 export type WarmingData = $Result.DefaultSelection<Prisma.$WarmingDataPayload>
+/**
+ * Model FakeUserRole
+ * 
+ */
+export type FakeUserRole = $Result.DefaultSelection<Prisma.$FakeUserRolePayload>
 
 /**
  * Enums
@@ -262,6 +267,16 @@ export class PrismaClient<
     * ```
     */
   get warmingData(): Prisma.WarmingDataDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.fakeUserRole`: Exposes CRUD operations for the **FakeUserRole** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FakeUserRoles
+    * const fakeUserRoles = await prisma.fakeUserRole.findMany()
+    * ```
+    */
+  get fakeUserRole(): Prisma.FakeUserRoleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -708,7 +723,8 @@ export namespace Prisma {
     Proxy: 'Proxy',
     ChatUserList: 'ChatUserList',
     UserData: 'UserData',
-    WarmingData: 'WarmingData'
+    WarmingData: 'WarmingData',
+    FakeUserRole: 'FakeUserRole'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -727,7 +743,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "tg_account" | "session" | "comment" | "proxy" | "chatUserList" | "userData" | "warmingData"
+      modelProps: "tg_account" | "session" | "comment" | "proxy" | "chatUserList" | "userData" | "warmingData" | "fakeUserRole"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1249,6 +1265,80 @@ export namespace Prisma {
           }
         }
       }
+      FakeUserRole: {
+        payload: Prisma.$FakeUserRolePayload<ExtArgs>
+        fields: Prisma.FakeUserRoleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FakeUserRoleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FakeUserRoleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>
+          }
+          findFirst: {
+            args: Prisma.FakeUserRoleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FakeUserRoleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>
+          }
+          findMany: {
+            args: Prisma.FakeUserRoleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>[]
+          }
+          create: {
+            args: Prisma.FakeUserRoleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>
+          }
+          createMany: {
+            args: Prisma.FakeUserRoleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FakeUserRoleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>[]
+          }
+          delete: {
+            args: Prisma.FakeUserRoleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>
+          }
+          update: {
+            args: Prisma.FakeUserRoleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>
+          }
+          deleteMany: {
+            args: Prisma.FakeUserRoleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FakeUserRoleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FakeUserRoleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>[]
+          }
+          upsert: {
+            args: Prisma.FakeUserRoleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FakeUserRolePayload>
+          }
+          aggregate: {
+            args: Prisma.FakeUserRoleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFakeUserRole>
+          }
+          groupBy: {
+            args: Prisma.FakeUserRoleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FakeUserRoleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FakeUserRoleCountArgs<ExtArgs>
+            result: $Utils.Optional<FakeUserRoleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1340,6 +1430,7 @@ export namespace Prisma {
     chatUserList?: ChatUserListOmit
     userData?: UserDataOmit
     warmingData?: WarmingDataOmit
+    fakeUserRole?: FakeUserRoleOmit
   }
 
   /* Types for Logging */
@@ -1475,10 +1566,12 @@ export namespace Prisma {
 
   export type ChatUserListCountOutputType = {
     users: number
+    warmingData: number
   }
 
   export type ChatUserListCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | ChatUserListCountOutputTypeCountUsersArgs
+    warmingData?: boolean | ChatUserListCountOutputTypeCountWarmingDataArgs
   }
 
   // Custom InputTypes
@@ -1497,6 +1590,44 @@ export namespace Prisma {
    */
   export type ChatUserListCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserDataWhereInput
+  }
+
+  /**
+   * ChatUserListCountOutputType without action
+   */
+  export type ChatUserListCountOutputTypeCountWarmingDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WarmingDataWhereInput
+  }
+
+
+  /**
+   * Count Type FakeUserRoleCountOutputType
+   */
+
+  export type FakeUserRoleCountOutputType = {
+    warmingData: number
+  }
+
+  export type FakeUserRoleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    warmingData?: boolean | FakeUserRoleCountOutputTypeCountWarmingDataArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FakeUserRoleCountOutputType without action
+   */
+  export type FakeUserRoleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRoleCountOutputType
+     */
+    select?: FakeUserRoleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FakeUserRoleCountOutputType without action
+   */
+  export type FakeUserRoleCountOutputTypeCountWarmingDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WarmingDataWhereInput
   }
 
 
@@ -6245,6 +6376,7 @@ export namespace Prisma {
     tg_accountId?: boolean
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
     users?: boolean | ChatUserList$usersArgs<ExtArgs>
+    warmingData?: boolean | ChatUserList$warmingDataArgs<ExtArgs>
     _count?: boolean | ChatUserListCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chatUserList"]>
 
@@ -6272,6 +6404,7 @@ export namespace Prisma {
   export type ChatUserListInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
     users?: boolean | ChatUserList$usersArgs<ExtArgs>
+    warmingData?: boolean | ChatUserList$warmingDataArgs<ExtArgs>
     _count?: boolean | ChatUserListCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ChatUserListIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6286,6 +6419,7 @@ export namespace Prisma {
     objects: {
       tg_account: Prisma.$Tg_accountPayload<ExtArgs>
       users: Prisma.$UserDataPayload<ExtArgs>[]
+      warmingData: Prisma.$WarmingDataPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6687,6 +6821,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tg_account<T extends Tg_accountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Tg_accountDefaultArgs<ExtArgs>>): Prisma__Tg_accountClient<$Result.GetResult<Prisma.$Tg_accountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     users<T extends ChatUserList$usersArgs<ExtArgs> = {}>(args?: Subset<T, ChatUserList$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    warmingData<T extends ChatUserList$warmingDataArgs<ExtArgs> = {}>(args?: Subset<T, ChatUserList$warmingDataArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WarmingDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7136,6 +7271,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserDataScalarFieldEnum | UserDataScalarFieldEnum[]
+  }
+
+  /**
+   * ChatUserList.warmingData
+   */
+  export type ChatUserList$warmingDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WarmingData
+     */
+    select?: WarmingDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WarmingData
+     */
+    omit?: WarmingDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WarmingDataInclude<ExtArgs> | null
+    where?: WarmingDataWhereInput
+    orderBy?: WarmingDataOrderByWithRelationInput | WarmingDataOrderByWithRelationInput[]
+    cursor?: WarmingDataWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WarmingDataScalarFieldEnum | WarmingDataScalarFieldEnum[]
   }
 
   /**
@@ -8255,6 +8414,8 @@ export namespace Prisma {
   export type WarmingDataAvgAggregateOutputType = {
     id: number | null
     tg_accountId: number | null
+    userListId: number | null
+    fakeUserRoleId: number | null
     stepCounter: number | null
     messagesCounter: number | null
     answersCounter: number | null
@@ -8270,6 +8431,8 @@ export namespace Prisma {
   export type WarmingDataSumAggregateOutputType = {
     id: number | null
     tg_accountId: number | null
+    userListId: number | null
+    fakeUserRoleId: number | null
     stepCounter: number | null
     messagesCounter: number | null
     answersCounter: number | null
@@ -8285,6 +8448,8 @@ export namespace Prisma {
   export type WarmingDataMinAggregateOutputType = {
     id: number | null
     tg_accountId: number | null
+    userListId: number | null
+    fakeUserRoleId: number | null
     timeLastStep: Date | null
     timeStop: Date | null
     stepCounter: number | null
@@ -8302,6 +8467,8 @@ export namespace Prisma {
   export type WarmingDataMaxAggregateOutputType = {
     id: number | null
     tg_accountId: number | null
+    userListId: number | null
+    fakeUserRoleId: number | null
     timeLastStep: Date | null
     timeStop: Date | null
     stepCounter: number | null
@@ -8319,6 +8486,8 @@ export namespace Prisma {
   export type WarmingDataCountAggregateOutputType = {
     id: number
     tg_accountId: number
+    userListId: number
+    fakeUserRoleId: number
     timeLastStep: number
     timeStop: number
     stepCounter: number
@@ -8338,6 +8507,8 @@ export namespace Prisma {
   export type WarmingDataAvgAggregateInputType = {
     id?: true
     tg_accountId?: true
+    userListId?: true
+    fakeUserRoleId?: true
     stepCounter?: true
     messagesCounter?: true
     answersCounter?: true
@@ -8353,6 +8524,8 @@ export namespace Prisma {
   export type WarmingDataSumAggregateInputType = {
     id?: true
     tg_accountId?: true
+    userListId?: true
+    fakeUserRoleId?: true
     stepCounter?: true
     messagesCounter?: true
     answersCounter?: true
@@ -8368,6 +8541,8 @@ export namespace Prisma {
   export type WarmingDataMinAggregateInputType = {
     id?: true
     tg_accountId?: true
+    userListId?: true
+    fakeUserRoleId?: true
     timeLastStep?: true
     timeStop?: true
     stepCounter?: true
@@ -8385,6 +8560,8 @@ export namespace Prisma {
   export type WarmingDataMaxAggregateInputType = {
     id?: true
     tg_accountId?: true
+    userListId?: true
+    fakeUserRoleId?: true
     timeLastStep?: true
     timeStop?: true
     stepCounter?: true
@@ -8402,6 +8579,8 @@ export namespace Prisma {
   export type WarmingDataCountAggregateInputType = {
     id?: true
     tg_accountId?: true
+    userListId?: true
+    fakeUserRoleId?: true
     timeLastStep?: true
     timeStop?: true
     stepCounter?: true
@@ -8506,6 +8685,8 @@ export namespace Prisma {
   export type WarmingDataGroupByOutputType = {
     id: number
     tg_accountId: number
+    userListId: number
+    fakeUserRoleId: number
     timeLastStep: Date
     timeStop: Date
     stepCounter: number
@@ -8517,7 +8698,7 @@ export namespace Prisma {
     answersPerHour: number
     reactionsPerHour: number
     commentsPerHour: number
-    startDelay: number | null
+    startDelay: number
     _count: WarmingDataCountAggregateOutputType | null
     _avg: WarmingDataAvgAggregateOutputType | null
     _sum: WarmingDataSumAggregateOutputType | null
@@ -8542,6 +8723,8 @@ export namespace Prisma {
   export type WarmingDataSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tg_accountId?: boolean
+    userListId?: boolean
+    fakeUserRoleId?: boolean
     timeLastStep?: boolean
     timeStop?: boolean
     stepCounter?: boolean
@@ -8555,11 +8738,15 @@ export namespace Prisma {
     commentsPerHour?: boolean
     startDelay?: boolean
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
+    userList?: boolean | ChatUserListDefaultArgs<ExtArgs>
+    fakeUserRole?: boolean | FakeUserRoleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["warmingData"]>
 
   export type WarmingDataSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tg_accountId?: boolean
+    userListId?: boolean
+    fakeUserRoleId?: boolean
     timeLastStep?: boolean
     timeStop?: boolean
     stepCounter?: boolean
@@ -8573,11 +8760,15 @@ export namespace Prisma {
     commentsPerHour?: boolean
     startDelay?: boolean
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
+    userList?: boolean | ChatUserListDefaultArgs<ExtArgs>
+    fakeUserRole?: boolean | FakeUserRoleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["warmingData"]>
 
   export type WarmingDataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tg_accountId?: boolean
+    userListId?: boolean
+    fakeUserRoleId?: boolean
     timeLastStep?: boolean
     timeStop?: boolean
     stepCounter?: boolean
@@ -8591,11 +8782,15 @@ export namespace Prisma {
     commentsPerHour?: boolean
     startDelay?: boolean
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
+    userList?: boolean | ChatUserListDefaultArgs<ExtArgs>
+    fakeUserRole?: boolean | FakeUserRoleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["warmingData"]>
 
   export type WarmingDataSelectScalar = {
     id?: boolean
     tg_accountId?: boolean
+    userListId?: boolean
+    fakeUserRoleId?: boolean
     timeLastStep?: boolean
     timeStop?: boolean
     stepCounter?: boolean
@@ -8610,25 +8805,35 @@ export namespace Prisma {
     startDelay?: boolean
   }
 
-  export type WarmingDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tg_accountId" | "timeLastStep" | "timeStop" | "stepCounter" | "messagesCounter" | "answersCounter" | "reactionsCounter" | "commentsCounter" | "messagesPerHour" | "answersPerHour" | "reactionsPerHour" | "commentsPerHour" | "startDelay", ExtArgs["result"]["warmingData"]>
+  export type WarmingDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tg_accountId" | "userListId" | "fakeUserRoleId" | "timeLastStep" | "timeStop" | "stepCounter" | "messagesCounter" | "answersCounter" | "reactionsCounter" | "commentsCounter" | "messagesPerHour" | "answersPerHour" | "reactionsPerHour" | "commentsPerHour" | "startDelay", ExtArgs["result"]["warmingData"]>
   export type WarmingDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
+    userList?: boolean | ChatUserListDefaultArgs<ExtArgs>
+    fakeUserRole?: boolean | FakeUserRoleDefaultArgs<ExtArgs>
   }
   export type WarmingDataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
+    userList?: boolean | ChatUserListDefaultArgs<ExtArgs>
+    fakeUserRole?: boolean | FakeUserRoleDefaultArgs<ExtArgs>
   }
   export type WarmingDataIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tg_account?: boolean | Tg_accountDefaultArgs<ExtArgs>
+    userList?: boolean | ChatUserListDefaultArgs<ExtArgs>
+    fakeUserRole?: boolean | FakeUserRoleDefaultArgs<ExtArgs>
   }
 
   export type $WarmingDataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "WarmingData"
     objects: {
       tg_account: Prisma.$Tg_accountPayload<ExtArgs>
+      userList: Prisma.$ChatUserListPayload<ExtArgs>
+      fakeUserRole: Prisma.$FakeUserRolePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tg_accountId: number
+      userListId: number
+      fakeUserRoleId: number
       timeLastStep: Date
       timeStop: Date
       stepCounter: number
@@ -8640,7 +8845,7 @@ export namespace Prisma {
       answersPerHour: number
       reactionsPerHour: number
       commentsPerHour: number
-      startDelay: number | null
+      startDelay: number
     }, ExtArgs["result"]["warmingData"]>
     composites: {}
   }
@@ -9036,6 +9241,8 @@ export namespace Prisma {
   export interface Prisma__WarmingDataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tg_account<T extends Tg_accountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, Tg_accountDefaultArgs<ExtArgs>>): Prisma__Tg_accountClient<$Result.GetResult<Prisma.$Tg_accountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    userList<T extends ChatUserListDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChatUserListDefaultArgs<ExtArgs>>): Prisma__ChatUserListClient<$Result.GetResult<Prisma.$ChatUserListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    fakeUserRole<T extends FakeUserRoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FakeUserRoleDefaultArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9067,6 +9274,8 @@ export namespace Prisma {
   interface WarmingDataFieldRefs {
     readonly id: FieldRef<"WarmingData", 'Int'>
     readonly tg_accountId: FieldRef<"WarmingData", 'Int'>
+    readonly userListId: FieldRef<"WarmingData", 'Int'>
+    readonly fakeUserRoleId: FieldRef<"WarmingData", 'Int'>
     readonly timeLastStep: FieldRef<"WarmingData", 'DateTime'>
     readonly timeStop: FieldRef<"WarmingData", 'DateTime'>
     readonly stepCounter: FieldRef<"WarmingData", 'Int'>
@@ -9494,6 +9703,1084 @@ export namespace Prisma {
 
 
   /**
+   * Model FakeUserRole
+   */
+
+  export type AggregateFakeUserRole = {
+    _count: FakeUserRoleCountAggregateOutputType | null
+    _avg: FakeUserRoleAvgAggregateOutputType | null
+    _sum: FakeUserRoleSumAggregateOutputType | null
+    _min: FakeUserRoleMinAggregateOutputType | null
+    _max: FakeUserRoleMaxAggregateOutputType | null
+  }
+
+  export type FakeUserRoleAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type FakeUserRoleSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type FakeUserRoleMinAggregateOutputType = {
+    id: number | null
+    role: string | null
+    description: string | null
+  }
+
+  export type FakeUserRoleMaxAggregateOutputType = {
+    id: number | null
+    role: string | null
+    description: string | null
+  }
+
+  export type FakeUserRoleCountAggregateOutputType = {
+    id: number
+    role: number
+    description: number
+    _all: number
+  }
+
+
+  export type FakeUserRoleAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type FakeUserRoleSumAggregateInputType = {
+    id?: true
+  }
+
+  export type FakeUserRoleMinAggregateInputType = {
+    id?: true
+    role?: true
+    description?: true
+  }
+
+  export type FakeUserRoleMaxAggregateInputType = {
+    id?: true
+    role?: true
+    description?: true
+  }
+
+  export type FakeUserRoleCountAggregateInputType = {
+    id?: true
+    role?: true
+    description?: true
+    _all?: true
+  }
+
+  export type FakeUserRoleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FakeUserRole to aggregate.
+     */
+    where?: FakeUserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FakeUserRoles to fetch.
+     */
+    orderBy?: FakeUserRoleOrderByWithRelationInput | FakeUserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FakeUserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FakeUserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FakeUserRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FakeUserRoles
+    **/
+    _count?: true | FakeUserRoleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FakeUserRoleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FakeUserRoleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FakeUserRoleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FakeUserRoleMaxAggregateInputType
+  }
+
+  export type GetFakeUserRoleAggregateType<T extends FakeUserRoleAggregateArgs> = {
+        [P in keyof T & keyof AggregateFakeUserRole]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFakeUserRole[P]>
+      : GetScalarType<T[P], AggregateFakeUserRole[P]>
+  }
+
+
+
+
+  export type FakeUserRoleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FakeUserRoleWhereInput
+    orderBy?: FakeUserRoleOrderByWithAggregationInput | FakeUserRoleOrderByWithAggregationInput[]
+    by: FakeUserRoleScalarFieldEnum[] | FakeUserRoleScalarFieldEnum
+    having?: FakeUserRoleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FakeUserRoleCountAggregateInputType | true
+    _avg?: FakeUserRoleAvgAggregateInputType
+    _sum?: FakeUserRoleSumAggregateInputType
+    _min?: FakeUserRoleMinAggregateInputType
+    _max?: FakeUserRoleMaxAggregateInputType
+  }
+
+  export type FakeUserRoleGroupByOutputType = {
+    id: number
+    role: string
+    description: string
+    _count: FakeUserRoleCountAggregateOutputType | null
+    _avg: FakeUserRoleAvgAggregateOutputType | null
+    _sum: FakeUserRoleSumAggregateOutputType | null
+    _min: FakeUserRoleMinAggregateOutputType | null
+    _max: FakeUserRoleMaxAggregateOutputType | null
+  }
+
+  type GetFakeUserRoleGroupByPayload<T extends FakeUserRoleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FakeUserRoleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FakeUserRoleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FakeUserRoleGroupByOutputType[P]>
+            : GetScalarType<T[P], FakeUserRoleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FakeUserRoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    role?: boolean
+    description?: boolean
+    warmingData?: boolean | FakeUserRole$warmingDataArgs<ExtArgs>
+    _count?: boolean | FakeUserRoleCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["fakeUserRole"]>
+
+  export type FakeUserRoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    role?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["fakeUserRole"]>
+
+  export type FakeUserRoleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    role?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["fakeUserRole"]>
+
+  export type FakeUserRoleSelectScalar = {
+    id?: boolean
+    role?: boolean
+    description?: boolean
+  }
+
+  export type FakeUserRoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "description", ExtArgs["result"]["fakeUserRole"]>
+  export type FakeUserRoleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    warmingData?: boolean | FakeUserRole$warmingDataArgs<ExtArgs>
+    _count?: boolean | FakeUserRoleCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FakeUserRoleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FakeUserRoleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FakeUserRolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FakeUserRole"
+    objects: {
+      warmingData: Prisma.$WarmingDataPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      role: string
+      description: string
+    }, ExtArgs["result"]["fakeUserRole"]>
+    composites: {}
+  }
+
+  type FakeUserRoleGetPayload<S extends boolean | null | undefined | FakeUserRoleDefaultArgs> = $Result.GetResult<Prisma.$FakeUserRolePayload, S>
+
+  type FakeUserRoleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FakeUserRoleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FakeUserRoleCountAggregateInputType | true
+    }
+
+  export interface FakeUserRoleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FakeUserRole'], meta: { name: 'FakeUserRole' } }
+    /**
+     * Find zero or one FakeUserRole that matches the filter.
+     * @param {FakeUserRoleFindUniqueArgs} args - Arguments to find a FakeUserRole
+     * @example
+     * // Get one FakeUserRole
+     * const fakeUserRole = await prisma.fakeUserRole.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FakeUserRoleFindUniqueArgs>(args: SelectSubset<T, FakeUserRoleFindUniqueArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FakeUserRole that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FakeUserRoleFindUniqueOrThrowArgs} args - Arguments to find a FakeUserRole
+     * @example
+     * // Get one FakeUserRole
+     * const fakeUserRole = await prisma.fakeUserRole.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FakeUserRoleFindUniqueOrThrowArgs>(args: SelectSubset<T, FakeUserRoleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FakeUserRole that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FakeUserRoleFindFirstArgs} args - Arguments to find a FakeUserRole
+     * @example
+     * // Get one FakeUserRole
+     * const fakeUserRole = await prisma.fakeUserRole.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FakeUserRoleFindFirstArgs>(args?: SelectSubset<T, FakeUserRoleFindFirstArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FakeUserRole that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FakeUserRoleFindFirstOrThrowArgs} args - Arguments to find a FakeUserRole
+     * @example
+     * // Get one FakeUserRole
+     * const fakeUserRole = await prisma.fakeUserRole.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FakeUserRoleFindFirstOrThrowArgs>(args?: SelectSubset<T, FakeUserRoleFindFirstOrThrowArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FakeUserRoles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FakeUserRoleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FakeUserRoles
+     * const fakeUserRoles = await prisma.fakeUserRole.findMany()
+     * 
+     * // Get first 10 FakeUserRoles
+     * const fakeUserRoles = await prisma.fakeUserRole.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const fakeUserRoleWithIdOnly = await prisma.fakeUserRole.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FakeUserRoleFindManyArgs>(args?: SelectSubset<T, FakeUserRoleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FakeUserRole.
+     * @param {FakeUserRoleCreateArgs} args - Arguments to create a FakeUserRole.
+     * @example
+     * // Create one FakeUserRole
+     * const FakeUserRole = await prisma.fakeUserRole.create({
+     *   data: {
+     *     // ... data to create a FakeUserRole
+     *   }
+     * })
+     * 
+     */
+    create<T extends FakeUserRoleCreateArgs>(args: SelectSubset<T, FakeUserRoleCreateArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FakeUserRoles.
+     * @param {FakeUserRoleCreateManyArgs} args - Arguments to create many FakeUserRoles.
+     * @example
+     * // Create many FakeUserRoles
+     * const fakeUserRole = await prisma.fakeUserRole.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FakeUserRoleCreateManyArgs>(args?: SelectSubset<T, FakeUserRoleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FakeUserRoles and returns the data saved in the database.
+     * @param {FakeUserRoleCreateManyAndReturnArgs} args - Arguments to create many FakeUserRoles.
+     * @example
+     * // Create many FakeUserRoles
+     * const fakeUserRole = await prisma.fakeUserRole.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FakeUserRoles and only return the `id`
+     * const fakeUserRoleWithIdOnly = await prisma.fakeUserRole.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FakeUserRoleCreateManyAndReturnArgs>(args?: SelectSubset<T, FakeUserRoleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FakeUserRole.
+     * @param {FakeUserRoleDeleteArgs} args - Arguments to delete one FakeUserRole.
+     * @example
+     * // Delete one FakeUserRole
+     * const FakeUserRole = await prisma.fakeUserRole.delete({
+     *   where: {
+     *     // ... filter to delete one FakeUserRole
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FakeUserRoleDeleteArgs>(args: SelectSubset<T, FakeUserRoleDeleteArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FakeUserRole.
+     * @param {FakeUserRoleUpdateArgs} args - Arguments to update one FakeUserRole.
+     * @example
+     * // Update one FakeUserRole
+     * const fakeUserRole = await prisma.fakeUserRole.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FakeUserRoleUpdateArgs>(args: SelectSubset<T, FakeUserRoleUpdateArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FakeUserRoles.
+     * @param {FakeUserRoleDeleteManyArgs} args - Arguments to filter FakeUserRoles to delete.
+     * @example
+     * // Delete a few FakeUserRoles
+     * const { count } = await prisma.fakeUserRole.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FakeUserRoleDeleteManyArgs>(args?: SelectSubset<T, FakeUserRoleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FakeUserRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FakeUserRoleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FakeUserRoles
+     * const fakeUserRole = await prisma.fakeUserRole.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FakeUserRoleUpdateManyArgs>(args: SelectSubset<T, FakeUserRoleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FakeUserRoles and returns the data updated in the database.
+     * @param {FakeUserRoleUpdateManyAndReturnArgs} args - Arguments to update many FakeUserRoles.
+     * @example
+     * // Update many FakeUserRoles
+     * const fakeUserRole = await prisma.fakeUserRole.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FakeUserRoles and only return the `id`
+     * const fakeUserRoleWithIdOnly = await prisma.fakeUserRole.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FakeUserRoleUpdateManyAndReturnArgs>(args: SelectSubset<T, FakeUserRoleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FakeUserRole.
+     * @param {FakeUserRoleUpsertArgs} args - Arguments to update or create a FakeUserRole.
+     * @example
+     * // Update or create a FakeUserRole
+     * const fakeUserRole = await prisma.fakeUserRole.upsert({
+     *   create: {
+     *     // ... data to create a FakeUserRole
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FakeUserRole we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FakeUserRoleUpsertArgs>(args: SelectSubset<T, FakeUserRoleUpsertArgs<ExtArgs>>): Prisma__FakeUserRoleClient<$Result.GetResult<Prisma.$FakeUserRolePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FakeUserRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FakeUserRoleCountArgs} args - Arguments to filter FakeUserRoles to count.
+     * @example
+     * // Count the number of FakeUserRoles
+     * const count = await prisma.fakeUserRole.count({
+     *   where: {
+     *     // ... the filter for the FakeUserRoles we want to count
+     *   }
+     * })
+    **/
+    count<T extends FakeUserRoleCountArgs>(
+      args?: Subset<T, FakeUserRoleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FakeUserRoleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FakeUserRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FakeUserRoleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FakeUserRoleAggregateArgs>(args: Subset<T, FakeUserRoleAggregateArgs>): Prisma.PrismaPromise<GetFakeUserRoleAggregateType<T>>
+
+    /**
+     * Group by FakeUserRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FakeUserRoleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FakeUserRoleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FakeUserRoleGroupByArgs['orderBy'] }
+        : { orderBy?: FakeUserRoleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FakeUserRoleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFakeUserRoleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FakeUserRole model
+   */
+  readonly fields: FakeUserRoleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FakeUserRole.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FakeUserRoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    warmingData<T extends FakeUserRole$warmingDataArgs<ExtArgs> = {}>(args?: Subset<T, FakeUserRole$warmingDataArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WarmingDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FakeUserRole model
+   */
+  interface FakeUserRoleFieldRefs {
+    readonly id: FieldRef<"FakeUserRole", 'Int'>
+    readonly role: FieldRef<"FakeUserRole", 'String'>
+    readonly description: FieldRef<"FakeUserRole", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FakeUserRole findUnique
+   */
+  export type FakeUserRoleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which FakeUserRole to fetch.
+     */
+    where: FakeUserRoleWhereUniqueInput
+  }
+
+  /**
+   * FakeUserRole findUniqueOrThrow
+   */
+  export type FakeUserRoleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which FakeUserRole to fetch.
+     */
+    where: FakeUserRoleWhereUniqueInput
+  }
+
+  /**
+   * FakeUserRole findFirst
+   */
+  export type FakeUserRoleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which FakeUserRole to fetch.
+     */
+    where?: FakeUserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FakeUserRoles to fetch.
+     */
+    orderBy?: FakeUserRoleOrderByWithRelationInput | FakeUserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FakeUserRoles.
+     */
+    cursor?: FakeUserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FakeUserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FakeUserRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FakeUserRoles.
+     */
+    distinct?: FakeUserRoleScalarFieldEnum | FakeUserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * FakeUserRole findFirstOrThrow
+   */
+  export type FakeUserRoleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which FakeUserRole to fetch.
+     */
+    where?: FakeUserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FakeUserRoles to fetch.
+     */
+    orderBy?: FakeUserRoleOrderByWithRelationInput | FakeUserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FakeUserRoles.
+     */
+    cursor?: FakeUserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FakeUserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FakeUserRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FakeUserRoles.
+     */
+    distinct?: FakeUserRoleScalarFieldEnum | FakeUserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * FakeUserRole findMany
+   */
+  export type FakeUserRoleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * Filter, which FakeUserRoles to fetch.
+     */
+    where?: FakeUserRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FakeUserRoles to fetch.
+     */
+    orderBy?: FakeUserRoleOrderByWithRelationInput | FakeUserRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FakeUserRoles.
+     */
+    cursor?: FakeUserRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FakeUserRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FakeUserRoles.
+     */
+    skip?: number
+    distinct?: FakeUserRoleScalarFieldEnum | FakeUserRoleScalarFieldEnum[]
+  }
+
+  /**
+   * FakeUserRole create
+   */
+  export type FakeUserRoleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FakeUserRole.
+     */
+    data: XOR<FakeUserRoleCreateInput, FakeUserRoleUncheckedCreateInput>
+  }
+
+  /**
+   * FakeUserRole createMany
+   */
+  export type FakeUserRoleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FakeUserRoles.
+     */
+    data: FakeUserRoleCreateManyInput | FakeUserRoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FakeUserRole createManyAndReturn
+   */
+  export type FakeUserRoleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * The data used to create many FakeUserRoles.
+     */
+    data: FakeUserRoleCreateManyInput | FakeUserRoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FakeUserRole update
+   */
+  export type FakeUserRoleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FakeUserRole.
+     */
+    data: XOR<FakeUserRoleUpdateInput, FakeUserRoleUncheckedUpdateInput>
+    /**
+     * Choose, which FakeUserRole to update.
+     */
+    where: FakeUserRoleWhereUniqueInput
+  }
+
+  /**
+   * FakeUserRole updateMany
+   */
+  export type FakeUserRoleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FakeUserRoles.
+     */
+    data: XOR<FakeUserRoleUpdateManyMutationInput, FakeUserRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which FakeUserRoles to update
+     */
+    where?: FakeUserRoleWhereInput
+    /**
+     * Limit how many FakeUserRoles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FakeUserRole updateManyAndReturn
+   */
+  export type FakeUserRoleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * The data used to update FakeUserRoles.
+     */
+    data: XOR<FakeUserRoleUpdateManyMutationInput, FakeUserRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which FakeUserRoles to update
+     */
+    where?: FakeUserRoleWhereInput
+    /**
+     * Limit how many FakeUserRoles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FakeUserRole upsert
+   */
+  export type FakeUserRoleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FakeUserRole to update in case it exists.
+     */
+    where: FakeUserRoleWhereUniqueInput
+    /**
+     * In case the FakeUserRole found by the `where` argument doesn't exist, create a new FakeUserRole with this data.
+     */
+    create: XOR<FakeUserRoleCreateInput, FakeUserRoleUncheckedCreateInput>
+    /**
+     * In case the FakeUserRole was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FakeUserRoleUpdateInput, FakeUserRoleUncheckedUpdateInput>
+  }
+
+  /**
+   * FakeUserRole delete
+   */
+  export type FakeUserRoleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+    /**
+     * Filter which FakeUserRole to delete.
+     */
+    where: FakeUserRoleWhereUniqueInput
+  }
+
+  /**
+   * FakeUserRole deleteMany
+   */
+  export type FakeUserRoleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FakeUserRoles to delete
+     */
+    where?: FakeUserRoleWhereInput
+    /**
+     * Limit how many FakeUserRoles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FakeUserRole.warmingData
+   */
+  export type FakeUserRole$warmingDataArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WarmingData
+     */
+    select?: WarmingDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WarmingData
+     */
+    omit?: WarmingDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WarmingDataInclude<ExtArgs> | null
+    where?: WarmingDataWhereInput
+    orderBy?: WarmingDataOrderByWithRelationInput | WarmingDataOrderByWithRelationInput[]
+    cursor?: WarmingDataWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WarmingDataScalarFieldEnum | WarmingDataScalarFieldEnum[]
+  }
+
+  /**
+   * FakeUserRole without action
+   */
+  export type FakeUserRoleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FakeUserRole
+     */
+    select?: FakeUserRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FakeUserRole
+     */
+    omit?: FakeUserRoleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FakeUserRoleInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9574,6 +10861,8 @@ export namespace Prisma {
   export const WarmingDataScalarFieldEnum: {
     id: 'id',
     tg_accountId: 'tg_accountId',
+    userListId: 'userListId',
+    fakeUserRoleId: 'fakeUserRoleId',
     timeLastStep: 'timeLastStep',
     timeStop: 'timeStop',
     stepCounter: 'stepCounter',
@@ -9589,6 +10878,15 @@ export namespace Prisma {
   };
 
   export type WarmingDataScalarFieldEnum = (typeof WarmingDataScalarFieldEnum)[keyof typeof WarmingDataScalarFieldEnum]
+
+
+  export const FakeUserRoleScalarFieldEnum: {
+    id: 'id',
+    role: 'role',
+    description: 'description'
+  };
+
+  export type FakeUserRoleScalarFieldEnum = (typeof FakeUserRoleScalarFieldEnum)[keyof typeof FakeUserRoleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9954,6 +11252,7 @@ export namespace Prisma {
     tg_accountId?: IntFilter<"ChatUserList"> | number
     tg_account?: XOR<Tg_accountScalarRelationFilter, Tg_accountWhereInput>
     users?: UserDataListRelationFilter
+    warmingData?: WarmingDataListRelationFilter
   }
 
   export type ChatUserListOrderByWithRelationInput = {
@@ -9962,6 +11261,7 @@ export namespace Prisma {
     tg_accountId?: SortOrder
     tg_account?: Tg_accountOrderByWithRelationInput
     users?: UserDataOrderByRelationAggregateInput
+    warmingData?: WarmingDataOrderByRelationAggregateInput
   }
 
   export type ChatUserListWhereUniqueInput = Prisma.AtLeast<{
@@ -9973,6 +11273,7 @@ export namespace Prisma {
     tg_accountId?: IntFilter<"ChatUserList"> | number
     tg_account?: XOR<Tg_accountScalarRelationFilter, Tg_accountWhereInput>
     users?: UserDataListRelationFilter
+    warmingData?: WarmingDataListRelationFilter
   }, "id">
 
   export type ChatUserListOrderByWithAggregationInput = {
@@ -10053,6 +11354,8 @@ export namespace Prisma {
     NOT?: WarmingDataWhereInput | WarmingDataWhereInput[]
     id?: IntFilter<"WarmingData"> | number
     tg_accountId?: IntFilter<"WarmingData"> | number
+    userListId?: IntFilter<"WarmingData"> | number
+    fakeUserRoleId?: IntFilter<"WarmingData"> | number
     timeLastStep?: DateTimeFilter<"WarmingData"> | Date | string
     timeStop?: DateTimeFilter<"WarmingData"> | Date | string
     stepCounter?: IntFilter<"WarmingData"> | number
@@ -10064,13 +11367,17 @@ export namespace Prisma {
     answersPerHour?: IntFilter<"WarmingData"> | number
     reactionsPerHour?: IntFilter<"WarmingData"> | number
     commentsPerHour?: IntFilter<"WarmingData"> | number
-    startDelay?: IntNullableFilter<"WarmingData"> | number | null
+    startDelay?: IntFilter<"WarmingData"> | number
     tg_account?: XOR<Tg_accountScalarRelationFilter, Tg_accountWhereInput>
+    userList?: XOR<ChatUserListScalarRelationFilter, ChatUserListWhereInput>
+    fakeUserRole?: XOR<FakeUserRoleScalarRelationFilter, FakeUserRoleWhereInput>
   }
 
   export type WarmingDataOrderByWithRelationInput = {
     id?: SortOrder
     tg_accountId?: SortOrder
+    userListId?: SortOrder
+    fakeUserRoleId?: SortOrder
     timeLastStep?: SortOrder
     timeStop?: SortOrder
     stepCounter?: SortOrder
@@ -10082,8 +11389,10 @@ export namespace Prisma {
     answersPerHour?: SortOrder
     reactionsPerHour?: SortOrder
     commentsPerHour?: SortOrder
-    startDelay?: SortOrderInput | SortOrder
+    startDelay?: SortOrder
     tg_account?: Tg_accountOrderByWithRelationInput
+    userList?: ChatUserListOrderByWithRelationInput
+    fakeUserRole?: FakeUserRoleOrderByWithRelationInput
   }
 
   export type WarmingDataWhereUniqueInput = Prisma.AtLeast<{
@@ -10092,6 +11401,8 @@ export namespace Prisma {
     AND?: WarmingDataWhereInput | WarmingDataWhereInput[]
     OR?: WarmingDataWhereInput[]
     NOT?: WarmingDataWhereInput | WarmingDataWhereInput[]
+    userListId?: IntFilter<"WarmingData"> | number
+    fakeUserRoleId?: IntFilter<"WarmingData"> | number
     timeLastStep?: DateTimeFilter<"WarmingData"> | Date | string
     timeStop?: DateTimeFilter<"WarmingData"> | Date | string
     stepCounter?: IntFilter<"WarmingData"> | number
@@ -10103,13 +11414,17 @@ export namespace Prisma {
     answersPerHour?: IntFilter<"WarmingData"> | number
     reactionsPerHour?: IntFilter<"WarmingData"> | number
     commentsPerHour?: IntFilter<"WarmingData"> | number
-    startDelay?: IntNullableFilter<"WarmingData"> | number | null
+    startDelay?: IntFilter<"WarmingData"> | number
     tg_account?: XOR<Tg_accountScalarRelationFilter, Tg_accountWhereInput>
+    userList?: XOR<ChatUserListScalarRelationFilter, ChatUserListWhereInput>
+    fakeUserRole?: XOR<FakeUserRoleScalarRelationFilter, FakeUserRoleWhereInput>
   }, "id" | "tg_accountId">
 
   export type WarmingDataOrderByWithAggregationInput = {
     id?: SortOrder
     tg_accountId?: SortOrder
+    userListId?: SortOrder
+    fakeUserRoleId?: SortOrder
     timeLastStep?: SortOrder
     timeStop?: SortOrder
     stepCounter?: SortOrder
@@ -10121,7 +11436,7 @@ export namespace Prisma {
     answersPerHour?: SortOrder
     reactionsPerHour?: SortOrder
     commentsPerHour?: SortOrder
-    startDelay?: SortOrderInput | SortOrder
+    startDelay?: SortOrder
     _count?: WarmingDataCountOrderByAggregateInput
     _avg?: WarmingDataAvgOrderByAggregateInput
     _max?: WarmingDataMaxOrderByAggregateInput
@@ -10135,6 +11450,8 @@ export namespace Prisma {
     NOT?: WarmingDataScalarWhereWithAggregatesInput | WarmingDataScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"WarmingData"> | number
     tg_accountId?: IntWithAggregatesFilter<"WarmingData"> | number
+    userListId?: IntWithAggregatesFilter<"WarmingData"> | number
+    fakeUserRoleId?: IntWithAggregatesFilter<"WarmingData"> | number
     timeLastStep?: DateTimeWithAggregatesFilter<"WarmingData"> | Date | string
     timeStop?: DateTimeWithAggregatesFilter<"WarmingData"> | Date | string
     stepCounter?: IntWithAggregatesFilter<"WarmingData"> | number
@@ -10146,7 +11463,54 @@ export namespace Prisma {
     answersPerHour?: IntWithAggregatesFilter<"WarmingData"> | number
     reactionsPerHour?: IntWithAggregatesFilter<"WarmingData"> | number
     commentsPerHour?: IntWithAggregatesFilter<"WarmingData"> | number
-    startDelay?: IntNullableWithAggregatesFilter<"WarmingData"> | number | null
+    startDelay?: IntWithAggregatesFilter<"WarmingData"> | number
+  }
+
+  export type FakeUserRoleWhereInput = {
+    AND?: FakeUserRoleWhereInput | FakeUserRoleWhereInput[]
+    OR?: FakeUserRoleWhereInput[]
+    NOT?: FakeUserRoleWhereInput | FakeUserRoleWhereInput[]
+    id?: IntFilter<"FakeUserRole"> | number
+    role?: StringFilter<"FakeUserRole"> | string
+    description?: StringFilter<"FakeUserRole"> | string
+    warmingData?: WarmingDataListRelationFilter
+  }
+
+  export type FakeUserRoleOrderByWithRelationInput = {
+    id?: SortOrder
+    role?: SortOrder
+    description?: SortOrder
+    warmingData?: WarmingDataOrderByRelationAggregateInput
+  }
+
+  export type FakeUserRoleWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FakeUserRoleWhereInput | FakeUserRoleWhereInput[]
+    OR?: FakeUserRoleWhereInput[]
+    NOT?: FakeUserRoleWhereInput | FakeUserRoleWhereInput[]
+    role?: StringFilter<"FakeUserRole"> | string
+    description?: StringFilter<"FakeUserRole"> | string
+    warmingData?: WarmingDataListRelationFilter
+  }, "id">
+
+  export type FakeUserRoleOrderByWithAggregationInput = {
+    id?: SortOrder
+    role?: SortOrder
+    description?: SortOrder
+    _count?: FakeUserRoleCountOrderByAggregateInput
+    _avg?: FakeUserRoleAvgOrderByAggregateInput
+    _max?: FakeUserRoleMaxOrderByAggregateInput
+    _min?: FakeUserRoleMinOrderByAggregateInput
+    _sum?: FakeUserRoleSumOrderByAggregateInput
+  }
+
+  export type FakeUserRoleScalarWhereWithAggregatesInput = {
+    AND?: FakeUserRoleScalarWhereWithAggregatesInput | FakeUserRoleScalarWhereWithAggregatesInput[]
+    OR?: FakeUserRoleScalarWhereWithAggregatesInput[]
+    NOT?: FakeUserRoleScalarWhereWithAggregatesInput | FakeUserRoleScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"FakeUserRole"> | number
+    role?: StringWithAggregatesFilter<"FakeUserRole"> | string
+    description?: StringWithAggregatesFilter<"FakeUserRole"> | string
   }
 
   export type Tg_accountCreateInput = {
@@ -10389,6 +11753,7 @@ export namespace Prisma {
     name: string
     tg_account: Tg_accountCreateNestedOneWithoutChatUserListInput
     users?: UserDataCreateNestedManyWithoutUserListInput
+    warmingData?: WarmingDataCreateNestedManyWithoutUserListInput
   }
 
   export type ChatUserListUncheckedCreateInput = {
@@ -10396,12 +11761,14 @@ export namespace Prisma {
     name: string
     tg_accountId: number
     users?: UserDataUncheckedCreateNestedManyWithoutUserListInput
+    warmingData?: WarmingDataUncheckedCreateNestedManyWithoutUserListInput
   }
 
   export type ChatUserListUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     tg_account?: Tg_accountUpdateOneRequiredWithoutChatUserListNestedInput
     users?: UserDataUpdateManyWithoutUserListNestedInput
+    warmingData?: WarmingDataUpdateManyWithoutUserListNestedInput
   }
 
   export type ChatUserListUncheckedUpdateInput = {
@@ -10409,6 +11776,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     tg_accountId?: IntFieldUpdateOperationsInput | number
     users?: UserDataUncheckedUpdateManyWithoutUserListNestedInput
+    warmingData?: WarmingDataUncheckedUpdateManyWithoutUserListNestedInput
   }
 
   export type ChatUserListCreateManyInput = {
@@ -10484,13 +11852,17 @@ export namespace Prisma {
     answersPerHour: number
     reactionsPerHour: number
     commentsPerHour: number
-    startDelay?: number | null
+    startDelay: number
     tg_account: Tg_accountCreateNestedOneWithoutWarmingDataInput
+    userList: ChatUserListCreateNestedOneWithoutWarmingDataInput
+    fakeUserRole: FakeUserRoleCreateNestedOneWithoutWarmingDataInput
   }
 
   export type WarmingDataUncheckedCreateInput = {
     id?: number
     tg_accountId: number
+    userListId: number
+    fakeUserRoleId: number
     timeLastStep?: Date | string
     timeStop: Date | string
     stepCounter?: number
@@ -10502,7 +11874,7 @@ export namespace Prisma {
     answersPerHour: number
     reactionsPerHour: number
     commentsPerHour: number
-    startDelay?: number | null
+    startDelay: number
   }
 
   export type WarmingDataUpdateInput = {
@@ -10517,13 +11889,17 @@ export namespace Prisma {
     answersPerHour?: IntFieldUpdateOperationsInput | number
     reactionsPerHour?: IntFieldUpdateOperationsInput | number
     commentsPerHour?: IntFieldUpdateOperationsInput | number
-    startDelay?: NullableIntFieldUpdateOperationsInput | number | null
+    startDelay?: IntFieldUpdateOperationsInput | number
     tg_account?: Tg_accountUpdateOneRequiredWithoutWarmingDataNestedInput
+    userList?: ChatUserListUpdateOneRequiredWithoutWarmingDataNestedInput
+    fakeUserRole?: FakeUserRoleUpdateOneRequiredWithoutWarmingDataNestedInput
   }
 
   export type WarmingDataUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tg_accountId?: IntFieldUpdateOperationsInput | number
+    userListId?: IntFieldUpdateOperationsInput | number
+    fakeUserRoleId?: IntFieldUpdateOperationsInput | number
     timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
     timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
     stepCounter?: IntFieldUpdateOperationsInput | number
@@ -10535,12 +11911,14 @@ export namespace Prisma {
     answersPerHour?: IntFieldUpdateOperationsInput | number
     reactionsPerHour?: IntFieldUpdateOperationsInput | number
     commentsPerHour?: IntFieldUpdateOperationsInput | number
-    startDelay?: NullableIntFieldUpdateOperationsInput | number | null
+    startDelay?: IntFieldUpdateOperationsInput | number
   }
 
   export type WarmingDataCreateManyInput = {
     id?: number
     tg_accountId: number
+    userListId: number
+    fakeUserRoleId: number
     timeLastStep?: Date | string
     timeStop: Date | string
     stepCounter?: number
@@ -10552,7 +11930,7 @@ export namespace Prisma {
     answersPerHour: number
     reactionsPerHour: number
     commentsPerHour: number
-    startDelay?: number | null
+    startDelay: number
   }
 
   export type WarmingDataUpdateManyMutationInput = {
@@ -10567,12 +11945,14 @@ export namespace Prisma {
     answersPerHour?: IntFieldUpdateOperationsInput | number
     reactionsPerHour?: IntFieldUpdateOperationsInput | number
     commentsPerHour?: IntFieldUpdateOperationsInput | number
-    startDelay?: NullableIntFieldUpdateOperationsInput | number | null
+    startDelay?: IntFieldUpdateOperationsInput | number
   }
 
   export type WarmingDataUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tg_accountId?: IntFieldUpdateOperationsInput | number
+    userListId?: IntFieldUpdateOperationsInput | number
+    fakeUserRoleId?: IntFieldUpdateOperationsInput | number
     timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
     timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
     stepCounter?: IntFieldUpdateOperationsInput | number
@@ -10584,7 +11964,50 @@ export namespace Prisma {
     answersPerHour?: IntFieldUpdateOperationsInput | number
     reactionsPerHour?: IntFieldUpdateOperationsInput | number
     commentsPerHour?: IntFieldUpdateOperationsInput | number
-    startDelay?: NullableIntFieldUpdateOperationsInput | number | null
+    startDelay?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FakeUserRoleCreateInput = {
+    role: string
+    description: string
+    warmingData?: WarmingDataCreateNestedManyWithoutFakeUserRoleInput
+  }
+
+  export type FakeUserRoleUncheckedCreateInput = {
+    id?: number
+    role: string
+    description: string
+    warmingData?: WarmingDataUncheckedCreateNestedManyWithoutFakeUserRoleInput
+  }
+
+  export type FakeUserRoleUpdateInput = {
+    role?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    warmingData?: WarmingDataUpdateManyWithoutFakeUserRoleNestedInput
+  }
+
+  export type FakeUserRoleUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    role?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    warmingData?: WarmingDataUncheckedUpdateManyWithoutFakeUserRoleNestedInput
+  }
+
+  export type FakeUserRoleCreateManyInput = {
+    id?: number
+    role: string
+    description: string
+  }
+
+  export type FakeUserRoleUpdateManyMutationInput = {
+    role?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FakeUserRoleUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    role?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -10932,7 +12355,17 @@ export namespace Prisma {
     none?: UserDataWhereInput
   }
 
+  export type WarmingDataListRelationFilter = {
+    every?: WarmingDataWhereInput
+    some?: WarmingDataWhereInput
+    none?: WarmingDataWhereInput
+  }
+
   export type UserDataOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WarmingDataOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -11011,9 +12444,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type FakeUserRoleScalarRelationFilter = {
+    is?: FakeUserRoleWhereInput
+    isNot?: FakeUserRoleWhereInput
+  }
+
   export type WarmingDataCountOrderByAggregateInput = {
     id?: SortOrder
     tg_accountId?: SortOrder
+    userListId?: SortOrder
+    fakeUserRoleId?: SortOrder
     timeLastStep?: SortOrder
     timeStop?: SortOrder
     stepCounter?: SortOrder
@@ -11031,6 +12471,8 @@ export namespace Prisma {
   export type WarmingDataAvgOrderByAggregateInput = {
     id?: SortOrder
     tg_accountId?: SortOrder
+    userListId?: SortOrder
+    fakeUserRoleId?: SortOrder
     stepCounter?: SortOrder
     messagesCounter?: SortOrder
     answersCounter?: SortOrder
@@ -11046,6 +12488,8 @@ export namespace Prisma {
   export type WarmingDataMaxOrderByAggregateInput = {
     id?: SortOrder
     tg_accountId?: SortOrder
+    userListId?: SortOrder
+    fakeUserRoleId?: SortOrder
     timeLastStep?: SortOrder
     timeStop?: SortOrder
     stepCounter?: SortOrder
@@ -11063,6 +12507,8 @@ export namespace Prisma {
   export type WarmingDataMinOrderByAggregateInput = {
     id?: SortOrder
     tg_accountId?: SortOrder
+    userListId?: SortOrder
+    fakeUserRoleId?: SortOrder
     timeLastStep?: SortOrder
     timeStop?: SortOrder
     stepCounter?: SortOrder
@@ -11080,6 +12526,8 @@ export namespace Prisma {
   export type WarmingDataSumOrderByAggregateInput = {
     id?: SortOrder
     tg_accountId?: SortOrder
+    userListId?: SortOrder
+    fakeUserRoleId?: SortOrder
     stepCounter?: SortOrder
     messagesCounter?: SortOrder
     answersCounter?: SortOrder
@@ -11104,6 +12552,32 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FakeUserRoleCountOrderByAggregateInput = {
+    id?: SortOrder
+    role?: SortOrder
+    description?: SortOrder
+  }
+
+  export type FakeUserRoleAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type FakeUserRoleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    role?: SortOrder
+    description?: SortOrder
+  }
+
+  export type FakeUserRoleMinOrderByAggregateInput = {
+    id?: SortOrder
+    role?: SortOrder
+    description?: SortOrder
+  }
+
+  export type FakeUserRoleSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type ProxyCreateNestedOneWithoutTg_accountInput = {
@@ -11379,11 +12853,25 @@ export namespace Prisma {
     connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
   }
 
+  export type WarmingDataCreateNestedManyWithoutUserListInput = {
+    create?: XOR<WarmingDataCreateWithoutUserListInput, WarmingDataUncheckedCreateWithoutUserListInput> | WarmingDataCreateWithoutUserListInput[] | WarmingDataUncheckedCreateWithoutUserListInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutUserListInput | WarmingDataCreateOrConnectWithoutUserListInput[]
+    createMany?: WarmingDataCreateManyUserListInputEnvelope
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+  }
+
   export type UserDataUncheckedCreateNestedManyWithoutUserListInput = {
     create?: XOR<UserDataCreateWithoutUserListInput, UserDataUncheckedCreateWithoutUserListInput> | UserDataCreateWithoutUserListInput[] | UserDataUncheckedCreateWithoutUserListInput[]
     connectOrCreate?: UserDataCreateOrConnectWithoutUserListInput | UserDataCreateOrConnectWithoutUserListInput[]
     createMany?: UserDataCreateManyUserListInputEnvelope
     connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+  }
+
+  export type WarmingDataUncheckedCreateNestedManyWithoutUserListInput = {
+    create?: XOR<WarmingDataCreateWithoutUserListInput, WarmingDataUncheckedCreateWithoutUserListInput> | WarmingDataCreateWithoutUserListInput[] | WarmingDataUncheckedCreateWithoutUserListInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutUserListInput | WarmingDataCreateOrConnectWithoutUserListInput[]
+    createMany?: WarmingDataCreateManyUserListInputEnvelope
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
   }
 
   export type Tg_accountUpdateOneRequiredWithoutChatUserListNestedInput = {
@@ -11408,6 +12896,20 @@ export namespace Prisma {
     deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
   }
 
+  export type WarmingDataUpdateManyWithoutUserListNestedInput = {
+    create?: XOR<WarmingDataCreateWithoutUserListInput, WarmingDataUncheckedCreateWithoutUserListInput> | WarmingDataCreateWithoutUserListInput[] | WarmingDataUncheckedCreateWithoutUserListInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutUserListInput | WarmingDataCreateOrConnectWithoutUserListInput[]
+    upsert?: WarmingDataUpsertWithWhereUniqueWithoutUserListInput | WarmingDataUpsertWithWhereUniqueWithoutUserListInput[]
+    createMany?: WarmingDataCreateManyUserListInputEnvelope
+    set?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    disconnect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    delete?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    update?: WarmingDataUpdateWithWhereUniqueWithoutUserListInput | WarmingDataUpdateWithWhereUniqueWithoutUserListInput[]
+    updateMany?: WarmingDataUpdateManyWithWhereWithoutUserListInput | WarmingDataUpdateManyWithWhereWithoutUserListInput[]
+    deleteMany?: WarmingDataScalarWhereInput | WarmingDataScalarWhereInput[]
+  }
+
   export type UserDataUncheckedUpdateManyWithoutUserListNestedInput = {
     create?: XOR<UserDataCreateWithoutUserListInput, UserDataUncheckedCreateWithoutUserListInput> | UserDataCreateWithoutUserListInput[] | UserDataUncheckedCreateWithoutUserListInput[]
     connectOrCreate?: UserDataCreateOrConnectWithoutUserListInput | UserDataCreateOrConnectWithoutUserListInput[]
@@ -11420,6 +12922,20 @@ export namespace Prisma {
     update?: UserDataUpdateWithWhereUniqueWithoutUserListInput | UserDataUpdateWithWhereUniqueWithoutUserListInput[]
     updateMany?: UserDataUpdateManyWithWhereWithoutUserListInput | UserDataUpdateManyWithWhereWithoutUserListInput[]
     deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
+  }
+
+  export type WarmingDataUncheckedUpdateManyWithoutUserListNestedInput = {
+    create?: XOR<WarmingDataCreateWithoutUserListInput, WarmingDataUncheckedCreateWithoutUserListInput> | WarmingDataCreateWithoutUserListInput[] | WarmingDataUncheckedCreateWithoutUserListInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutUserListInput | WarmingDataCreateOrConnectWithoutUserListInput[]
+    upsert?: WarmingDataUpsertWithWhereUniqueWithoutUserListInput | WarmingDataUpsertWithWhereUniqueWithoutUserListInput[]
+    createMany?: WarmingDataCreateManyUserListInputEnvelope
+    set?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    disconnect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    delete?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    update?: WarmingDataUpdateWithWhereUniqueWithoutUserListInput | WarmingDataUpdateWithWhereUniqueWithoutUserListInput[]
+    updateMany?: WarmingDataUpdateManyWithWhereWithoutUserListInput | WarmingDataUpdateManyWithWhereWithoutUserListInput[]
+    deleteMany?: WarmingDataScalarWhereInput | WarmingDataScalarWhereInput[]
   }
 
   export type ChatUserListCreateNestedOneWithoutUsersInput = {
@@ -11442,6 +12958,18 @@ export namespace Prisma {
     connect?: Tg_accountWhereUniqueInput
   }
 
+  export type ChatUserListCreateNestedOneWithoutWarmingDataInput = {
+    create?: XOR<ChatUserListCreateWithoutWarmingDataInput, ChatUserListUncheckedCreateWithoutWarmingDataInput>
+    connectOrCreate?: ChatUserListCreateOrConnectWithoutWarmingDataInput
+    connect?: ChatUserListWhereUniqueInput
+  }
+
+  export type FakeUserRoleCreateNestedOneWithoutWarmingDataInput = {
+    create?: XOR<FakeUserRoleCreateWithoutWarmingDataInput, FakeUserRoleUncheckedCreateWithoutWarmingDataInput>
+    connectOrCreate?: FakeUserRoleCreateOrConnectWithoutWarmingDataInput
+    connect?: FakeUserRoleWhereUniqueInput
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -11452,6 +12980,64 @@ export namespace Prisma {
     upsert?: Tg_accountUpsertWithoutWarmingDataInput
     connect?: Tg_accountWhereUniqueInput
     update?: XOR<XOR<Tg_accountUpdateToOneWithWhereWithoutWarmingDataInput, Tg_accountUpdateWithoutWarmingDataInput>, Tg_accountUncheckedUpdateWithoutWarmingDataInput>
+  }
+
+  export type ChatUserListUpdateOneRequiredWithoutWarmingDataNestedInput = {
+    create?: XOR<ChatUserListCreateWithoutWarmingDataInput, ChatUserListUncheckedCreateWithoutWarmingDataInput>
+    connectOrCreate?: ChatUserListCreateOrConnectWithoutWarmingDataInput
+    upsert?: ChatUserListUpsertWithoutWarmingDataInput
+    connect?: ChatUserListWhereUniqueInput
+    update?: XOR<XOR<ChatUserListUpdateToOneWithWhereWithoutWarmingDataInput, ChatUserListUpdateWithoutWarmingDataInput>, ChatUserListUncheckedUpdateWithoutWarmingDataInput>
+  }
+
+  export type FakeUserRoleUpdateOneRequiredWithoutWarmingDataNestedInput = {
+    create?: XOR<FakeUserRoleCreateWithoutWarmingDataInput, FakeUserRoleUncheckedCreateWithoutWarmingDataInput>
+    connectOrCreate?: FakeUserRoleCreateOrConnectWithoutWarmingDataInput
+    upsert?: FakeUserRoleUpsertWithoutWarmingDataInput
+    connect?: FakeUserRoleWhereUniqueInput
+    update?: XOR<XOR<FakeUserRoleUpdateToOneWithWhereWithoutWarmingDataInput, FakeUserRoleUpdateWithoutWarmingDataInput>, FakeUserRoleUncheckedUpdateWithoutWarmingDataInput>
+  }
+
+  export type WarmingDataCreateNestedManyWithoutFakeUserRoleInput = {
+    create?: XOR<WarmingDataCreateWithoutFakeUserRoleInput, WarmingDataUncheckedCreateWithoutFakeUserRoleInput> | WarmingDataCreateWithoutFakeUserRoleInput[] | WarmingDataUncheckedCreateWithoutFakeUserRoleInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutFakeUserRoleInput | WarmingDataCreateOrConnectWithoutFakeUserRoleInput[]
+    createMany?: WarmingDataCreateManyFakeUserRoleInputEnvelope
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+  }
+
+  export type WarmingDataUncheckedCreateNestedManyWithoutFakeUserRoleInput = {
+    create?: XOR<WarmingDataCreateWithoutFakeUserRoleInput, WarmingDataUncheckedCreateWithoutFakeUserRoleInput> | WarmingDataCreateWithoutFakeUserRoleInput[] | WarmingDataUncheckedCreateWithoutFakeUserRoleInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutFakeUserRoleInput | WarmingDataCreateOrConnectWithoutFakeUserRoleInput[]
+    createMany?: WarmingDataCreateManyFakeUserRoleInputEnvelope
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+  }
+
+  export type WarmingDataUpdateManyWithoutFakeUserRoleNestedInput = {
+    create?: XOR<WarmingDataCreateWithoutFakeUserRoleInput, WarmingDataUncheckedCreateWithoutFakeUserRoleInput> | WarmingDataCreateWithoutFakeUserRoleInput[] | WarmingDataUncheckedCreateWithoutFakeUserRoleInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutFakeUserRoleInput | WarmingDataCreateOrConnectWithoutFakeUserRoleInput[]
+    upsert?: WarmingDataUpsertWithWhereUniqueWithoutFakeUserRoleInput | WarmingDataUpsertWithWhereUniqueWithoutFakeUserRoleInput[]
+    createMany?: WarmingDataCreateManyFakeUserRoleInputEnvelope
+    set?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    disconnect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    delete?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    update?: WarmingDataUpdateWithWhereUniqueWithoutFakeUserRoleInput | WarmingDataUpdateWithWhereUniqueWithoutFakeUserRoleInput[]
+    updateMany?: WarmingDataUpdateManyWithWhereWithoutFakeUserRoleInput | WarmingDataUpdateManyWithWhereWithoutFakeUserRoleInput[]
+    deleteMany?: WarmingDataScalarWhereInput | WarmingDataScalarWhereInput[]
+  }
+
+  export type WarmingDataUncheckedUpdateManyWithoutFakeUserRoleNestedInput = {
+    create?: XOR<WarmingDataCreateWithoutFakeUserRoleInput, WarmingDataUncheckedCreateWithoutFakeUserRoleInput> | WarmingDataCreateWithoutFakeUserRoleInput[] | WarmingDataUncheckedCreateWithoutFakeUserRoleInput[]
+    connectOrCreate?: WarmingDataCreateOrConnectWithoutFakeUserRoleInput | WarmingDataCreateOrConnectWithoutFakeUserRoleInput[]
+    upsert?: WarmingDataUpsertWithWhereUniqueWithoutFakeUserRoleInput | WarmingDataUpsertWithWhereUniqueWithoutFakeUserRoleInput[]
+    createMany?: WarmingDataCreateManyFakeUserRoleInputEnvelope
+    set?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    disconnect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    delete?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    connect?: WarmingDataWhereUniqueInput | WarmingDataWhereUniqueInput[]
+    update?: WarmingDataUpdateWithWhereUniqueWithoutFakeUserRoleInput | WarmingDataUpdateWithWhereUniqueWithoutFakeUserRoleInput[]
+    updateMany?: WarmingDataUpdateManyWithWhereWithoutFakeUserRoleInput | WarmingDataUpdateManyWithWhereWithoutFakeUserRoleInput[]
+    deleteMany?: WarmingDataScalarWhereInput | WarmingDataScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -11711,12 +13297,14 @@ export namespace Prisma {
   export type ChatUserListCreateWithoutTg_accountInput = {
     name: string
     users?: UserDataCreateNestedManyWithoutUserListInput
+    warmingData?: WarmingDataCreateNestedManyWithoutUserListInput
   }
 
   export type ChatUserListUncheckedCreateWithoutTg_accountInput = {
     id?: number
     name: string
     users?: UserDataUncheckedCreateNestedManyWithoutUserListInput
+    warmingData?: WarmingDataUncheckedCreateNestedManyWithoutUserListInput
   }
 
   export type ChatUserListCreateOrConnectWithoutTg_accountInput = {
@@ -11741,11 +13329,15 @@ export namespace Prisma {
     answersPerHour: number
     reactionsPerHour: number
     commentsPerHour: number
-    startDelay?: number | null
+    startDelay: number
+    userList: ChatUserListCreateNestedOneWithoutWarmingDataInput
+    fakeUserRole: FakeUserRoleCreateNestedOneWithoutWarmingDataInput
   }
 
   export type WarmingDataUncheckedCreateWithoutTg_accountInput = {
     id?: number
+    userListId: number
+    fakeUserRoleId: number
     timeLastStep?: Date | string
     timeStop: Date | string
     stepCounter?: number
@@ -11757,7 +13349,7 @@ export namespace Prisma {
     answersPerHour: number
     reactionsPerHour: number
     commentsPerHour: number
-    startDelay?: number | null
+    startDelay: number
   }
 
   export type WarmingDataCreateOrConnectWithoutTg_accountInput = {
@@ -11892,11 +13484,15 @@ export namespace Prisma {
     answersPerHour?: IntFieldUpdateOperationsInput | number
     reactionsPerHour?: IntFieldUpdateOperationsInput | number
     commentsPerHour?: IntFieldUpdateOperationsInput | number
-    startDelay?: NullableIntFieldUpdateOperationsInput | number | null
+    startDelay?: IntFieldUpdateOperationsInput | number
+    userList?: ChatUserListUpdateOneRequiredWithoutWarmingDataNestedInput
+    fakeUserRole?: FakeUserRoleUpdateOneRequiredWithoutWarmingDataNestedInput
   }
 
   export type WarmingDataUncheckedUpdateWithoutTg_accountInput = {
     id?: IntFieldUpdateOperationsInput | number
+    userListId?: IntFieldUpdateOperationsInput | number
+    fakeUserRoleId?: IntFieldUpdateOperationsInput | number
     timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
     timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
     stepCounter?: IntFieldUpdateOperationsInput | number
@@ -11908,7 +13504,7 @@ export namespace Prisma {
     answersPerHour?: IntFieldUpdateOperationsInput | number
     reactionsPerHour?: IntFieldUpdateOperationsInput | number
     commentsPerHour?: IntFieldUpdateOperationsInput | number
-    startDelay?: NullableIntFieldUpdateOperationsInput | number | null
+    startDelay?: IntFieldUpdateOperationsInput | number
   }
 
   export type Tg_accountCreateWithoutSessionInput = {
@@ -12146,6 +13742,51 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type WarmingDataCreateWithoutUserListInput = {
+    timeLastStep?: Date | string
+    timeStop: Date | string
+    stepCounter?: number
+    messagesCounter?: number
+    answersCounter?: number
+    reactionsCounter?: number
+    commentsCounter?: number
+    messagesPerHour: number
+    answersPerHour: number
+    reactionsPerHour: number
+    commentsPerHour: number
+    startDelay: number
+    tg_account: Tg_accountCreateNestedOneWithoutWarmingDataInput
+    fakeUserRole: FakeUserRoleCreateNestedOneWithoutWarmingDataInput
+  }
+
+  export type WarmingDataUncheckedCreateWithoutUserListInput = {
+    id?: number
+    tg_accountId: number
+    fakeUserRoleId: number
+    timeLastStep?: Date | string
+    timeStop: Date | string
+    stepCounter?: number
+    messagesCounter?: number
+    answersCounter?: number
+    reactionsCounter?: number
+    commentsCounter?: number
+    messagesPerHour: number
+    answersPerHour: number
+    reactionsPerHour: number
+    commentsPerHour: number
+    startDelay: number
+  }
+
+  export type WarmingDataCreateOrConnectWithoutUserListInput = {
+    where: WarmingDataWhereUniqueInput
+    create: XOR<WarmingDataCreateWithoutUserListInput, WarmingDataUncheckedCreateWithoutUserListInput>
+  }
+
+  export type WarmingDataCreateManyUserListInputEnvelope = {
+    data: WarmingDataCreateManyUserListInput | WarmingDataCreateManyUserListInput[]
+    skipDuplicates?: boolean
+  }
+
   export type Tg_accountUpsertWithoutChatUserListInput = {
     update: XOR<Tg_accountUpdateWithoutChatUserListInput, Tg_accountUncheckedUpdateWithoutChatUserListInput>
     create: XOR<Tg_accountCreateWithoutChatUserListInput, Tg_accountUncheckedCreateWithoutChatUserListInput>
@@ -12206,15 +13847,55 @@ export namespace Prisma {
     phone?: StringNullableFilter<"UserData"> | string | null
   }
 
+  export type WarmingDataUpsertWithWhereUniqueWithoutUserListInput = {
+    where: WarmingDataWhereUniqueInput
+    update: XOR<WarmingDataUpdateWithoutUserListInput, WarmingDataUncheckedUpdateWithoutUserListInput>
+    create: XOR<WarmingDataCreateWithoutUserListInput, WarmingDataUncheckedCreateWithoutUserListInput>
+  }
+
+  export type WarmingDataUpdateWithWhereUniqueWithoutUserListInput = {
+    where: WarmingDataWhereUniqueInput
+    data: XOR<WarmingDataUpdateWithoutUserListInput, WarmingDataUncheckedUpdateWithoutUserListInput>
+  }
+
+  export type WarmingDataUpdateManyWithWhereWithoutUserListInput = {
+    where: WarmingDataScalarWhereInput
+    data: XOR<WarmingDataUpdateManyMutationInput, WarmingDataUncheckedUpdateManyWithoutUserListInput>
+  }
+
+  export type WarmingDataScalarWhereInput = {
+    AND?: WarmingDataScalarWhereInput | WarmingDataScalarWhereInput[]
+    OR?: WarmingDataScalarWhereInput[]
+    NOT?: WarmingDataScalarWhereInput | WarmingDataScalarWhereInput[]
+    id?: IntFilter<"WarmingData"> | number
+    tg_accountId?: IntFilter<"WarmingData"> | number
+    userListId?: IntFilter<"WarmingData"> | number
+    fakeUserRoleId?: IntFilter<"WarmingData"> | number
+    timeLastStep?: DateTimeFilter<"WarmingData"> | Date | string
+    timeStop?: DateTimeFilter<"WarmingData"> | Date | string
+    stepCounter?: IntFilter<"WarmingData"> | number
+    messagesCounter?: IntFilter<"WarmingData"> | number
+    answersCounter?: IntFilter<"WarmingData"> | number
+    reactionsCounter?: IntFilter<"WarmingData"> | number
+    commentsCounter?: IntFilter<"WarmingData"> | number
+    messagesPerHour?: IntFilter<"WarmingData"> | number
+    answersPerHour?: IntFilter<"WarmingData"> | number
+    reactionsPerHour?: IntFilter<"WarmingData"> | number
+    commentsPerHour?: IntFilter<"WarmingData"> | number
+    startDelay?: IntFilter<"WarmingData"> | number
+  }
+
   export type ChatUserListCreateWithoutUsersInput = {
     name: string
     tg_account: Tg_accountCreateNestedOneWithoutChatUserListInput
+    warmingData?: WarmingDataCreateNestedManyWithoutUserListInput
   }
 
   export type ChatUserListUncheckedCreateWithoutUsersInput = {
     id?: number
     name: string
     tg_accountId: number
+    warmingData?: WarmingDataUncheckedCreateNestedManyWithoutUserListInput
   }
 
   export type ChatUserListCreateOrConnectWithoutUsersInput = {
@@ -12236,12 +13917,14 @@ export namespace Prisma {
   export type ChatUserListUpdateWithoutUsersInput = {
     name?: StringFieldUpdateOperationsInput | string
     tg_account?: Tg_accountUpdateOneRequiredWithoutChatUserListNestedInput
+    warmingData?: WarmingDataUpdateManyWithoutUserListNestedInput
   }
 
   export type ChatUserListUncheckedUpdateWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     tg_accountId?: IntFieldUpdateOperationsInput | number
+    warmingData?: WarmingDataUncheckedUpdateManyWithoutUserListNestedInput
   }
 
   export type Tg_accountCreateWithoutWarmingDataInput = {
@@ -12270,6 +13953,40 @@ export namespace Prisma {
   export type Tg_accountCreateOrConnectWithoutWarmingDataInput = {
     where: Tg_accountWhereUniqueInput
     create: XOR<Tg_accountCreateWithoutWarmingDataInput, Tg_accountUncheckedCreateWithoutWarmingDataInput>
+  }
+
+  export type ChatUserListCreateWithoutWarmingDataInput = {
+    name: string
+    tg_account: Tg_accountCreateNestedOneWithoutChatUserListInput
+    users?: UserDataCreateNestedManyWithoutUserListInput
+  }
+
+  export type ChatUserListUncheckedCreateWithoutWarmingDataInput = {
+    id?: number
+    name: string
+    tg_accountId: number
+    users?: UserDataUncheckedCreateNestedManyWithoutUserListInput
+  }
+
+  export type ChatUserListCreateOrConnectWithoutWarmingDataInput = {
+    where: ChatUserListWhereUniqueInput
+    create: XOR<ChatUserListCreateWithoutWarmingDataInput, ChatUserListUncheckedCreateWithoutWarmingDataInput>
+  }
+
+  export type FakeUserRoleCreateWithoutWarmingDataInput = {
+    role: string
+    description: string
+  }
+
+  export type FakeUserRoleUncheckedCreateWithoutWarmingDataInput = {
+    id?: number
+    role: string
+    description: string
+  }
+
+  export type FakeUserRoleCreateOrConnectWithoutWarmingDataInput = {
+    where: FakeUserRoleWhereUniqueInput
+    create: XOR<FakeUserRoleCreateWithoutWarmingDataInput, FakeUserRoleUncheckedCreateWithoutWarmingDataInput>
   }
 
   export type Tg_accountUpsertWithoutWarmingDataInput = {
@@ -12306,6 +14023,113 @@ export namespace Prisma {
     ChatUserList?: ChatUserListUncheckedUpdateManyWithoutTg_accountNestedInput
   }
 
+  export type ChatUserListUpsertWithoutWarmingDataInput = {
+    update: XOR<ChatUserListUpdateWithoutWarmingDataInput, ChatUserListUncheckedUpdateWithoutWarmingDataInput>
+    create: XOR<ChatUserListCreateWithoutWarmingDataInput, ChatUserListUncheckedCreateWithoutWarmingDataInput>
+    where?: ChatUserListWhereInput
+  }
+
+  export type ChatUserListUpdateToOneWithWhereWithoutWarmingDataInput = {
+    where?: ChatUserListWhereInput
+    data: XOR<ChatUserListUpdateWithoutWarmingDataInput, ChatUserListUncheckedUpdateWithoutWarmingDataInput>
+  }
+
+  export type ChatUserListUpdateWithoutWarmingDataInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    tg_account?: Tg_accountUpdateOneRequiredWithoutChatUserListNestedInput
+    users?: UserDataUpdateManyWithoutUserListNestedInput
+  }
+
+  export type ChatUserListUncheckedUpdateWithoutWarmingDataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    tg_accountId?: IntFieldUpdateOperationsInput | number
+    users?: UserDataUncheckedUpdateManyWithoutUserListNestedInput
+  }
+
+  export type FakeUserRoleUpsertWithoutWarmingDataInput = {
+    update: XOR<FakeUserRoleUpdateWithoutWarmingDataInput, FakeUserRoleUncheckedUpdateWithoutWarmingDataInput>
+    create: XOR<FakeUserRoleCreateWithoutWarmingDataInput, FakeUserRoleUncheckedCreateWithoutWarmingDataInput>
+    where?: FakeUserRoleWhereInput
+  }
+
+  export type FakeUserRoleUpdateToOneWithWhereWithoutWarmingDataInput = {
+    where?: FakeUserRoleWhereInput
+    data: XOR<FakeUserRoleUpdateWithoutWarmingDataInput, FakeUserRoleUncheckedUpdateWithoutWarmingDataInput>
+  }
+
+  export type FakeUserRoleUpdateWithoutWarmingDataInput = {
+    role?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FakeUserRoleUncheckedUpdateWithoutWarmingDataInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    role?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WarmingDataCreateWithoutFakeUserRoleInput = {
+    timeLastStep?: Date | string
+    timeStop: Date | string
+    stepCounter?: number
+    messagesCounter?: number
+    answersCounter?: number
+    reactionsCounter?: number
+    commentsCounter?: number
+    messagesPerHour: number
+    answersPerHour: number
+    reactionsPerHour: number
+    commentsPerHour: number
+    startDelay: number
+    tg_account: Tg_accountCreateNestedOneWithoutWarmingDataInput
+    userList: ChatUserListCreateNestedOneWithoutWarmingDataInput
+  }
+
+  export type WarmingDataUncheckedCreateWithoutFakeUserRoleInput = {
+    id?: number
+    tg_accountId: number
+    userListId: number
+    timeLastStep?: Date | string
+    timeStop: Date | string
+    stepCounter?: number
+    messagesCounter?: number
+    answersCounter?: number
+    reactionsCounter?: number
+    commentsCounter?: number
+    messagesPerHour: number
+    answersPerHour: number
+    reactionsPerHour: number
+    commentsPerHour: number
+    startDelay: number
+  }
+
+  export type WarmingDataCreateOrConnectWithoutFakeUserRoleInput = {
+    where: WarmingDataWhereUniqueInput
+    create: XOR<WarmingDataCreateWithoutFakeUserRoleInput, WarmingDataUncheckedCreateWithoutFakeUserRoleInput>
+  }
+
+  export type WarmingDataCreateManyFakeUserRoleInputEnvelope = {
+    data: WarmingDataCreateManyFakeUserRoleInput | WarmingDataCreateManyFakeUserRoleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type WarmingDataUpsertWithWhereUniqueWithoutFakeUserRoleInput = {
+    where: WarmingDataWhereUniqueInput
+    update: XOR<WarmingDataUpdateWithoutFakeUserRoleInput, WarmingDataUncheckedUpdateWithoutFakeUserRoleInput>
+    create: XOR<WarmingDataCreateWithoutFakeUserRoleInput, WarmingDataUncheckedCreateWithoutFakeUserRoleInput>
+  }
+
+  export type WarmingDataUpdateWithWhereUniqueWithoutFakeUserRoleInput = {
+    where: WarmingDataWhereUniqueInput
+    data: XOR<WarmingDataUpdateWithoutFakeUserRoleInput, WarmingDataUncheckedUpdateWithoutFakeUserRoleInput>
+  }
+
+  export type WarmingDataUpdateManyWithWhereWithoutFakeUserRoleInput = {
+    where: WarmingDataScalarWhereInput
+    data: XOR<WarmingDataUpdateManyMutationInput, WarmingDataUncheckedUpdateManyWithoutFakeUserRoleInput>
+  }
+
   export type CommentCreateManyAccountInput = {
     id?: number
     message: string
@@ -12333,12 +14157,14 @@ export namespace Prisma {
   export type ChatUserListUpdateWithoutTg_accountInput = {
     name?: StringFieldUpdateOperationsInput | string
     users?: UserDataUpdateManyWithoutUserListNestedInput
+    warmingData?: WarmingDataUpdateManyWithoutUserListNestedInput
   }
 
   export type ChatUserListUncheckedUpdateWithoutTg_accountInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     users?: UserDataUncheckedUpdateManyWithoutUserListNestedInput
+    warmingData?: WarmingDataUncheckedUpdateManyWithoutUserListNestedInput
   }
 
   export type ChatUserListUncheckedUpdateManyWithoutTg_accountInput = {
@@ -12350,6 +14176,24 @@ export namespace Prisma {
     id?: number
     username?: string | null
     phone?: string | null
+  }
+
+  export type WarmingDataCreateManyUserListInput = {
+    id?: number
+    tg_accountId: number
+    fakeUserRoleId: number
+    timeLastStep?: Date | string
+    timeStop: Date | string
+    stepCounter?: number
+    messagesCounter?: number
+    answersCounter?: number
+    reactionsCounter?: number
+    commentsCounter?: number
+    messagesPerHour: number
+    answersPerHour: number
+    reactionsPerHour: number
+    commentsPerHour: number
+    startDelay: number
   }
 
   export type UserDataUpdateWithoutUserListInput = {
@@ -12367,6 +14211,130 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     username?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type WarmingDataUpdateWithoutUserListInput = {
+    timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
+    stepCounter?: IntFieldUpdateOperationsInput | number
+    messagesCounter?: IntFieldUpdateOperationsInput | number
+    answersCounter?: IntFieldUpdateOperationsInput | number
+    reactionsCounter?: IntFieldUpdateOperationsInput | number
+    commentsCounter?: IntFieldUpdateOperationsInput | number
+    messagesPerHour?: IntFieldUpdateOperationsInput | number
+    answersPerHour?: IntFieldUpdateOperationsInput | number
+    reactionsPerHour?: IntFieldUpdateOperationsInput | number
+    commentsPerHour?: IntFieldUpdateOperationsInput | number
+    startDelay?: IntFieldUpdateOperationsInput | number
+    tg_account?: Tg_accountUpdateOneRequiredWithoutWarmingDataNestedInput
+    fakeUserRole?: FakeUserRoleUpdateOneRequiredWithoutWarmingDataNestedInput
+  }
+
+  export type WarmingDataUncheckedUpdateWithoutUserListInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tg_accountId?: IntFieldUpdateOperationsInput | number
+    fakeUserRoleId?: IntFieldUpdateOperationsInput | number
+    timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
+    stepCounter?: IntFieldUpdateOperationsInput | number
+    messagesCounter?: IntFieldUpdateOperationsInput | number
+    answersCounter?: IntFieldUpdateOperationsInput | number
+    reactionsCounter?: IntFieldUpdateOperationsInput | number
+    commentsCounter?: IntFieldUpdateOperationsInput | number
+    messagesPerHour?: IntFieldUpdateOperationsInput | number
+    answersPerHour?: IntFieldUpdateOperationsInput | number
+    reactionsPerHour?: IntFieldUpdateOperationsInput | number
+    commentsPerHour?: IntFieldUpdateOperationsInput | number
+    startDelay?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WarmingDataUncheckedUpdateManyWithoutUserListInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tg_accountId?: IntFieldUpdateOperationsInput | number
+    fakeUserRoleId?: IntFieldUpdateOperationsInput | number
+    timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
+    stepCounter?: IntFieldUpdateOperationsInput | number
+    messagesCounter?: IntFieldUpdateOperationsInput | number
+    answersCounter?: IntFieldUpdateOperationsInput | number
+    reactionsCounter?: IntFieldUpdateOperationsInput | number
+    commentsCounter?: IntFieldUpdateOperationsInput | number
+    messagesPerHour?: IntFieldUpdateOperationsInput | number
+    answersPerHour?: IntFieldUpdateOperationsInput | number
+    reactionsPerHour?: IntFieldUpdateOperationsInput | number
+    commentsPerHour?: IntFieldUpdateOperationsInput | number
+    startDelay?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WarmingDataCreateManyFakeUserRoleInput = {
+    id?: number
+    tg_accountId: number
+    userListId: number
+    timeLastStep?: Date | string
+    timeStop: Date | string
+    stepCounter?: number
+    messagesCounter?: number
+    answersCounter?: number
+    reactionsCounter?: number
+    commentsCounter?: number
+    messagesPerHour: number
+    answersPerHour: number
+    reactionsPerHour: number
+    commentsPerHour: number
+    startDelay: number
+  }
+
+  export type WarmingDataUpdateWithoutFakeUserRoleInput = {
+    timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
+    stepCounter?: IntFieldUpdateOperationsInput | number
+    messagesCounter?: IntFieldUpdateOperationsInput | number
+    answersCounter?: IntFieldUpdateOperationsInput | number
+    reactionsCounter?: IntFieldUpdateOperationsInput | number
+    commentsCounter?: IntFieldUpdateOperationsInput | number
+    messagesPerHour?: IntFieldUpdateOperationsInput | number
+    answersPerHour?: IntFieldUpdateOperationsInput | number
+    reactionsPerHour?: IntFieldUpdateOperationsInput | number
+    commentsPerHour?: IntFieldUpdateOperationsInput | number
+    startDelay?: IntFieldUpdateOperationsInput | number
+    tg_account?: Tg_accountUpdateOneRequiredWithoutWarmingDataNestedInput
+    userList?: ChatUserListUpdateOneRequiredWithoutWarmingDataNestedInput
+  }
+
+  export type WarmingDataUncheckedUpdateWithoutFakeUserRoleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tg_accountId?: IntFieldUpdateOperationsInput | number
+    userListId?: IntFieldUpdateOperationsInput | number
+    timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
+    stepCounter?: IntFieldUpdateOperationsInput | number
+    messagesCounter?: IntFieldUpdateOperationsInput | number
+    answersCounter?: IntFieldUpdateOperationsInput | number
+    reactionsCounter?: IntFieldUpdateOperationsInput | number
+    commentsCounter?: IntFieldUpdateOperationsInput | number
+    messagesPerHour?: IntFieldUpdateOperationsInput | number
+    answersPerHour?: IntFieldUpdateOperationsInput | number
+    reactionsPerHour?: IntFieldUpdateOperationsInput | number
+    commentsPerHour?: IntFieldUpdateOperationsInput | number
+    startDelay?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type WarmingDataUncheckedUpdateManyWithoutFakeUserRoleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tg_accountId?: IntFieldUpdateOperationsInput | number
+    userListId?: IntFieldUpdateOperationsInput | number
+    timeLastStep?: DateTimeFieldUpdateOperationsInput | Date | string
+    timeStop?: DateTimeFieldUpdateOperationsInput | Date | string
+    stepCounter?: IntFieldUpdateOperationsInput | number
+    messagesCounter?: IntFieldUpdateOperationsInput | number
+    answersCounter?: IntFieldUpdateOperationsInput | number
+    reactionsCounter?: IntFieldUpdateOperationsInput | number
+    commentsCounter?: IntFieldUpdateOperationsInput | number
+    messagesPerHour?: IntFieldUpdateOperationsInput | number
+    answersPerHour?: IntFieldUpdateOperationsInput | number
+    reactionsPerHour?: IntFieldUpdateOperationsInput | number
+    commentsPerHour?: IntFieldUpdateOperationsInput | number
+    startDelay?: IntFieldUpdateOperationsInput | number
   }
 
 

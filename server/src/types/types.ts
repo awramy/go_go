@@ -1,4 +1,5 @@
 import {Api} from "telegram";
+import {Role} from "@fireworksai/sdk";
 
 export interface searchChats {
   chat: Api.TypeChat,
@@ -26,9 +27,17 @@ export interface chatUser {
 //warming
 
 export interface BodyWarmingData {
+  userListId: number,
+  fakeUserRoleId: number,
   timeStop: string,
   messagesPerHour: number,
   answersPerHour: number,
   reactionsPerHour: number,
-  commentsPerHour: number
+  commentsPerHour: number,
+  startDelay: number,
+}
+
+export interface ChatHistory {
+  role: Role,
+  content: string
 }

@@ -62,12 +62,15 @@ enum ProxyType {
   socks
 }
 
+////parsing
+
 model ChatUserList {
-  id           Int        @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   name         String
-  tg_account   Tg_account @relation(fields: [tg_accountId], references: [id])
+  tg_account   Tg_account    @relation(fields: [tg_accountId], references: [id])
   tg_accountId Int
   users        UserData[]
+  warmingData  WarmingData[]
 
   @@index([tg_accountId])
 }
@@ -87,8 +90,17 @@ model UserData {
 model WarmingData {
   id Int @id @default(autoincrement())
 
+  //привязываем аккаунт к Warming (один аккаунт - один прогрев)
   tg_account   Tg_account @relation(fields: [tg_accountId], references: [id])
   tg_accountId Int        @unique
+
+  //привязывем базу пользователей к Warming (одна база - много warming)
+  userList   ChatUserList @relation(fields: [userListId], references: [id])
+  userListId Int
+
+  //привязваем фейковую роль аккаунта при прогреве (одна роль - много warming)
+  fakeUserRole   FakeUserRole @relation(fields: [fakeUserRoleId], references: [id])
+  fakeUserRoleId Int
 
   timeLastStep     DateTime @default(now())
   timeStop         DateTime
@@ -103,5 +115,13 @@ model WarmingData {
   reactionsPerHour Int
   commentsPerHour  Int
 
-  startDelay Int?
+  //стартовая задержка в секундах (между целевыми действиями)
+  startDelay Int
+}
+
+model FakeUserRole {
+  id          Int           @id @default(autoincrement())
+  role        String
+  description String
+  warmingData WarmingData[]
 }

@@ -169,6 +169,8 @@ exports.Prisma.UserDataScalarFieldEnum = {
 exports.Prisma.WarmingDataScalarFieldEnum = {
   id: 'id',
   tg_accountId: 'tg_accountId',
+  userListId: 'userListId',
+  fakeUserRoleId: 'fakeUserRoleId',
   timeLastStep: 'timeLastStep',
   timeStop: 'timeStop',
   stepCounter: 'stepCounter',
@@ -181,6 +183,12 @@ exports.Prisma.WarmingDataScalarFieldEnum = {
   reactionsPerHour: 'reactionsPerHour',
   commentsPerHour: 'commentsPerHour',
   startDelay: 'startDelay'
+};
+
+exports.Prisma.FakeUserRoleScalarFieldEnum = {
+  id: 'id',
+  role: 'role',
+  description: 'description'
 };
 
 exports.Prisma.SortOrder = {
@@ -211,7 +219,8 @@ exports.Prisma.ModelName = {
   Proxy: 'Proxy',
   ChatUserList: 'ChatUserList',
   UserData: 'UserData',
-  WarmingData: 'WarmingData'
+  WarmingData: 'WarmingData',
+  FakeUserRole: 'FakeUserRole'
 };
 
 /**

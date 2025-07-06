@@ -14,7 +14,7 @@ export class ParsingService {
 
   async getChats (accountId: number) {
     try {
-      await this.clientService.login(accountId)
+      await this.clientService.connect(accountId)
 
       const res = await this.getUserChats()
       if (res) return res
@@ -26,7 +26,7 @@ export class ParsingService {
   }
   async parsing (accountId: number, chatUsername: string, tableTitle: string) {
     try {
-      await this.clientService.login(accountId)
+      await this.clientService.connect(accountId)
 
       const chat = await this.findChatByUsername(chatUsername)
       if(chat) {
@@ -191,5 +191,31 @@ export class ParsingService {
     const worksheet = XLSX.utils.json_to_sheet(data)
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Users')
     return XLSX.write(workbook, {type: 'buffer', bookType: 'xlsx'})
+  }
+
+  //test features
+  async findChatById (accountId: number, chatId: number) {
+    try {
+      await this.clientService.connect(accountId)
+      return await this.findChat(chatId)
+    } catch (e) {
+      console.log(e)
+      return null
+    }
+  }
+  async findChat (chatId: number) {
+    if(!this.clientService.client) throw new Error('Client does not exist')
+    try {
+      const result = await this.clientService.client.invoke(
+        new Api.contacts.Search({
+          q: String(chatId)
+        })
+      )
+      // if(!result || !result.fullChat) return null
+      return result
+    } catch (e) {
+      console.log(e)
+      return null
+    }
   }
 }

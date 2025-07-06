@@ -24,7 +24,17 @@ export class WarmingController {
   async warming (req: Request<{id: number}>, res: Response) {
     try {
       const {id} = req.params
-      const result = await this.warmingService.warmingEngine(Number(id))
+      const result = await this.warmingService.warmingEngine()
+      res.status(200).send(result)
+    } catch (e) {
+      res.status(500).json(e)
+    }
+  }
+
+  async createFakeRole (req: Request<{}, {}, {role: string, description: string}>, res: Response) {
+    try {
+      const { role, description } = req.body
+      const result = await this.warmingService.createFakeUserRole(role, description)
       res.status(200).send(result)
     } catch (e) {
       res.status(500).json(e)
@@ -32,6 +42,10 @@ export class WarmingController {
   }
 
   async test (req: Request, res: Response) {
-
+      const {id} = req.params
+      console.log('control')
+      const result = await this.warmingService.test(Number(id))
+      if(result)
+        res.status(200).json(result)
   }
 }
