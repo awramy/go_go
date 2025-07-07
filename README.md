@@ -5,31 +5,31 @@
 - Для рекламных задач (формирования рассылок, прогрева аккаунтов, инвайтинга пользователей в социальные ресурсы)
 - Сбора данных (парсинг чатов с целевыми пользователями, формирования пользовательских баз, таблиц Excel
 - Расширенные возможности управления аккаунтами (Добавление/удаление аккаунтов, настройка прокси, настройка сессий)
-**на данный момент доступны к использованию страницы: "Аккаунты"(полный доступ), "Парсинг"(полный доступ), "Прогрев"(серверный доступ)
+* на данный момент доступны к использованию страницы: "Аккаунты"(полный доступ), "Парсинг"(полный доступ), "Прогрев"(серверный доступ)
 
 ## Быстрый старт
 ### 1. Установка Node.js (если не установлена)
-winget install OpenJS.NodeJS.LTS (для Windows (CMD/PowerShell))
+- winget install OpenJS.NodeJS.LTS (для Windows (CMD/PowerShell))
 
-sudo apt update
-sudo apt install -y nodejs npm (для Ubuntu/Debian)
+- sudo apt update
+- sudo apt install -y nodejs npm (для Ubuntu/Debian)
 
-brew install node (для macOS)
+- brew install node (для macOS)
 
 ### 2. Клонирование репозитория
-git clone https://github.com/awramy/go_go.git
+- git clone https://github.com/awramy/go_go.git
 
 ### 3. Установка зависимостей
-cd client -> npm install
-cd ..
-cd server -> npm install
+- cd client -> npm install
+- cd ..
+- cd server -> npm install
 
 ### 4. Запуск приложения
-cd client -> npm run dev
-cd server -> npm run dev //запуск сервера на порту 3000 по умолчанию
+- cd client -> npm run dev
+- cd server -> npm run dev //запуск сервера на порту 3000 по умолчанию
 
 ### 5. Базовый роутинг приложения
-/account/... - управление аккаунтами
-/proxy/... - управление прокси
-/action/... - управление действиями (парсинг, прогрев, расслыка)
+- /account/... - управление аккаунтами
+- /proxy/... - управление прокси
+- /action/... - управление действиями (парсинг, прогрев, расслыка)
 
